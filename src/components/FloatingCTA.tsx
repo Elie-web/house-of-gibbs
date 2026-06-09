@@ -1,15 +1,15 @@
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { useState } from 'react'
-import { Phone } from 'lucide-react'
-import { STUDIO } from '../config'
+import { Phone, CalendarDays } from 'lucide-react'
+import { HOUSE } from '../config'
+import { useBooking } from '../booking'
 
 export default function FloatingCTA() {
   const [visible, setVisible] = useState(false)
   const { scrollY } = useScroll()
+  const { openBooking } = useBooking()
 
-  useMotionValueEvent(scrollY, 'change', (y) => {
-    setVisible(y > 500)
-  })
+  useMotionValueEvent(scrollY, 'change', (y) => setVisible(y > 560))
 
   return (
     <motion.div
@@ -19,19 +19,20 @@ export default function FloatingCTA() {
       className="fixed bottom-0 inset-x-0 z-40 lg:hidden pb-safe"
       aria-hidden={!visible}
     >
-      <div className="bg-charcoal border-t border-ash/60 px-4 py-3 flex gap-3">
-        <a
-          href={`tel:${STUDIO.phoneRaw}`}
-          className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-gold text-ink text-sm font-semibold rounded-full shadow-lg shadow-gold/20"
+      <div className="bg-canvas/90 backdrop-blur-md border-t border-line px-4 py-3 flex gap-3">
+        <button
+          onClick={() => openBooking()}
+          className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-ink text-canvas text-sm font-600 rounded-full"
         >
-          <Phone size={15} strokeWidth={2.5} />
-          {STUDIO.phone}
-        </a>
+          <CalendarDays size={15} strokeWidth={2.25} />
+          Prendre rendez-vous
+        </button>
         <a
-          href="#contact"
-          className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-carbon text-cream text-sm font-medium rounded-full border border-ash/60"
+          href={`tel:${HOUSE.phoneRaw}`}
+          className="w-14 flex items-center justify-center py-3.5 text-ink rounded-full border border-line"
+          aria-label="Appeler"
         >
-          Prendre RDV
+          <Phone size={17} strokeWidth={2.25} className="text-green" />
         </a>
       </div>
     </motion.div>

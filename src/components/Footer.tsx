@@ -1,89 +1,83 @@
-import { ArrowRight } from 'lucide-react'
-import { STUDIO } from '../config'
+import { ArrowUpRight } from 'lucide-react'
+import { HOUSE, ARTISTS } from '../config'
+import { InstagramIcon } from './icons'
 
 const NAV_LINKS = [
-  { label: 'Portfolio', href: '#galerie' },
-  { label: 'L\'artiste', href: '#artiste' },
-  { label: 'Styles', href: '#styles' },
-  { label: 'Processus', href: '#processus' },
-  { label: 'Avis', href: '#avis' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Le collectif', href: '#collectif' },
+  { label: 'Les artistes', href: '#artistes' },
+  { label: 'Galerie',      href: '#galerie' },
+  { label: 'Instagram',    href: '#instagram' },
+  { label: 'Le studio',    href: '#studio' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="bg-ink border-t border-ash/50 py-16 px-6">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-ink text-canvas px-5 md:px-10 pt-16 pb-28 lg:pb-10">
+      <div className="max-w-container mx-auto">
 
-        <div className="grid md:grid-cols-3 gap-12 mb-14">
+        <div className="grid md:grid-cols-[1.4fr_1fr_1fr] gap-12 mb-14">
 
           {/* Identité */}
           <div>
-            <p className="font-label text-[10px] tracking-ultrawide uppercase text-muted mb-1">
-              {STUDIO.city} · Savoie
+            <p className="font-display text-2xl font-500 mb-1">{HOUSE.name}</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-5">
+              {HOUSE.city} · {HOUSE.department}
             </p>
-            <p className="font-serif text-2xl font-semibold text-cream mb-4">
-              {STUDIO.name}
-            </p>
-            <p className="font-sans text-sm text-muted leading-relaxed max-w-xs">
-              Studio privé de tatouage spécialisé dans le réalisme.
+            <p className="font-sans text-sm text-ink-soft leading-relaxed max-w-xs mb-6">
+              Collectif familial de tatoueurs. Studio privé en hauteur, vue sur Belledonne.
               Sur rendez-vous uniquement.
             </p>
+            <p className="font-display text-base italic-display text-green-3">« {HOUSE.tagline} »</p>
           </div>
 
           {/* Navigation */}
           <div>
-            <p className="font-label text-[10px] tracking-ultrawide uppercase text-muted mb-5">
-              Navigation
-            </p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-5">Navigation</p>
             <nav className="flex flex-col gap-2.5">
               {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="group inline-flex items-center gap-1.5 font-sans text-sm text-muted/70 hover:text-gold transition-colors duration-300"
-                >
-                  <ArrowRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                <a key={link.href} href={link.href} className="font-sans text-sm text-ink-soft hover:text-green-3 transition-colors w-fit">
                   {link.label}
                 </a>
               ))}
             </nav>
           </div>
 
-          {/* Contact */}
+          {/* Artistes + contact */}
           <div>
-            <p className="font-label text-[10px] tracking-ultrawide uppercase text-muted mb-5">
-              Contact
-            </p>
-            <div className="space-y-3 font-sans text-sm text-muted">
-              <p>
-                <a href={`tel:${STUDIO.phoneRaw}`} className="hover:text-gold transition-colors duration-300">
-                  {STUDIO.phone}
+            <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-5">Les artistes</p>
+            <div className="flex flex-col gap-2.5 mb-6">
+              {ARTISTS.map((a) => (
+                <a
+                  key={a.id}
+                  href={a.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ '--accent': a.accent } as React.CSSProperties}
+                  className="group inline-flex items-center gap-2 font-sans text-sm text-ink-soft hover:text-canvas transition-colors w-fit"
+                >
+                  <InstagramIcon size={14} className="text-[var(--accent)]" />
+                  {a.name} · @{a.handle}
                 </a>
-              </p>
-              <p>{STUDIO.address}</p>
-              <p>{STUDIO.cityZip}</p>
-              <a
-                href={STUDIO.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-gold/60 hover:text-gold text-xs transition-colors duration-300 mt-1"
-              >
-                Voir sur Maps
-                <ArrowRight size={10} />
-              </a>
+              ))}
             </div>
+            <a href={`tel:${HOUSE.phoneRaw}`} className="font-sans text-sm text-ink-soft hover:text-green-3 transition-colors block">
+              {HOUSE.phone}
+            </a>
+            <a
+              href={HOUSE.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-1.5 text-green-3 text-xs font-600 mt-2 hover:gap-2.5 transition-all"
+            >
+              Voir sur Maps
+              <ArrowUpRight size={11} />
+            </a>
           </div>
         </div>
 
-        {/* Bas de footer */}
-        <div className="pt-8 border-t border-ash/40 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-sans text-xs text-muted/40">
-            © 2025 {STUDIO.name} · Tous droits réservés
-          </p>
-          <p className="font-sans text-xs text-muted/30">
-            {STUDIO.yearsExp} ans d'expérience · Saint-Baldoph, Savoie
-          </p>
+        <div className="pt-8 border-t border-ink-line flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="font-sans text-xs text-muted">© 2026 {HOUSE.name}. Tous droits réservés.</p>
+          <p className="font-mono text-[10px] uppercase tracking-wide text-muted">Marc · Isabelle · Indi — {HOUSE.city}</p>
         </div>
       </div>
     </footer>

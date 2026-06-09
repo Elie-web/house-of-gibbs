@@ -1,182 +1,141 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Phone, MapPin, Lock, ArrowRight } from 'lucide-react'
-import { STUDIO } from '../config'
+import { Phone, MapPin, Mountain, ArrowRight, ArrowUpRight, Mail } from 'lucide-react'
+import { HOUSE } from '../config'
+import { useBooking } from '../booking'
 
 export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
+  const { openBooking } = useBooking()
+  const ease = [0.22, 1, 0.36, 1] as const
 
   return (
-    <section id="contact" ref={ref} className="py-28 px-6 bg-charcoal">
-      <div className="max-w-7xl mx-auto">
+    <section id="studio" ref={ref} className="py-16 sm:py-24 md:py-32 px-5 md:px-10 bg-canvas">
+      <div className="max-w-container mx-auto">
 
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="mb-16"
+          transition={{ duration: 0.7, ease }}
+          className="mb-12 md:mb-16 max-w-2xl"
         >
-          <div className="flex items-center gap-3 mb-5">
-            <div className="h-px w-8 bg-gold/50" />
-            <span className="font-label text-[11px] tracking-ultrawide uppercase text-gold/80">
-              Rendez-vous
-            </span>
-          </div>
-          <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.6rem)] font-semibold text-cream leading-tight">
-            Votre projet
-            <br />
-            <span className="font-light italic text-gold">commence par un appel</span>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-green mb-5">Le studio</p>
+          <h2 className="font-display text-[clamp(2.2rem,5vw,3.8rem)] font-400 tracking-tight text-ink leading-[1.05]">
+            En hauteur, au calme, <span className="italic-display text-gradient-green-static">face à Belledonne</span>.
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
 
           {/* Infos + carte */}
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-8"
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease }}
+            className="space-y-7"
           >
-            {/* Bloc avertissement studio privé */}
-            <div className="flex gap-4 p-5 bg-carbon rounded-xl border border-ash/50">
-              <Lock size={18} strokeWidth={1.5} className="text-gold/70 flex-shrink-0 mt-0.5" />
+            <div className="flex gap-4 p-5 bg-green-tint/60 rounded-2xl border border-line">
+              <Mountain size={20} strokeWidth={1.75} className="text-green-2 shrink-0 mt-0.5" />
               <div>
-                <p className="font-sans text-sm font-semibold text-cream mb-1">Studio privé</p>
-                <p className="font-sans text-[13px] text-muted leading-relaxed">
-                  Mark ne reçoit que sur rendez-vous. Pas de passage possible.
-                  Appelez ou envoyez un message pour convenir d'une date.
+                <p className="font-sans text-sm font-600 text-ink mb-1">Studio privé en hauteur</p>
+                <p className="font-sans text-[13.5px] text-soft leading-relaxed">
+                  {HOUSE.view}. Sur rendez-vous uniquement — pas de passage. On vous reçoit
+                  dans le calme, à la lumière de la montagne.
                 </p>
               </div>
             </div>
 
-            {/* Téléphone */}
-            <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-lg bg-carbon flex items-center justify-center border border-ash/50 flex-shrink-0">
-                <Phone size={16} strokeWidth={1.5} className="text-gold/70" />
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-xl bg-canvas-2 flex items-center justify-center border border-line shrink-0">
+                  <Phone size={16} strokeWidth={1.75} className="text-green" />
+                </div>
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-1">Téléphone</p>
+                  <a href={`tel:${HOUSE.phoneRaw}`} className="font-display text-lg font-500 text-ink hover:text-green transition-colors">
+                    {HOUSE.phone}
+                  </a>
+                </div>
               </div>
-              <div>
-                <p className="font-label text-[10px] tracking-ultrawide uppercase text-muted mb-1">Téléphone</p>
-                <a
-                  href={`tel:${STUDIO.phoneRaw}`}
-                  className="font-serif text-2xl text-cream hover:text-gold transition-colors duration-300"
-                >
-                  {STUDIO.phone}
-                </a>
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-xl bg-canvas-2 flex items-center justify-center border border-line shrink-0">
+                  <Mail size={16} strokeWidth={1.75} className="text-green" />
+                </div>
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-1">E-mail</p>
+                  <a href={`mailto:${HOUSE.email}`} className="font-sans text-sm font-600 text-ink hover:text-green transition-colors break-all">
+                    {HOUSE.email}
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Adresse */}
             <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-lg bg-carbon flex items-center justify-center border border-ash/50 flex-shrink-0">
-                <MapPin size={16} strokeWidth={1.5} className="text-gold/70" />
+              <div className="w-10 h-10 rounded-xl bg-canvas-2 flex items-center justify-center border border-line shrink-0">
+                <MapPin size={16} strokeWidth={1.75} className="text-green" />
               </div>
               <div>
-                <p className="font-label text-[10px] tracking-ultrawide uppercase text-muted mb-1">Adresse</p>
-                <p className="font-serif text-lg text-cream">{STUDIO.address}</p>
-                <p className="font-sans text-sm text-muted">{STUDIO.cityZip}</p>
+                <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-1">Adresse</p>
+                <p className="font-display text-lg font-500 text-ink">{HOUSE.address}</p>
+                <p className="font-sans text-sm text-soft">{HOUSE.cityZip}</p>
                 <a
-                  href={STUDIO.mapsUrl}
+                  href={HOUSE.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-gold/70 hover:text-gold text-xs font-medium mt-1.5 transition-colors duration-300"
+                  className="group inline-flex items-center gap-1.5 text-green text-xs font-600 mt-2 border-b border-green/40 pb-0.5 hover:border-green transition-colors"
                 >
                   Voir sur Google Maps
-                  <ArrowRight size={11} />
+                  <ArrowUpRight size={12} />
                 </a>
               </div>
             </div>
 
-            {/* Carte Google Maps */}
-            <div className="rounded-xl overflow-hidden border border-ash/50 h-52">
+            <div className="rounded-2xl overflow-hidden border border-line h-56">
               <iframe
-                src={STUDIO.mapEmbed}
+                src={HOUSE.mapEmbed}
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
+                style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Localisation Blackscab Tattoos"
+                title="Localisation House of Gibbs"
               />
             </div>
           </motion.div>
 
-          {/* Formulaire de contact */}
+          {/* Bloc CTA réservation */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.18, ease }}
+            className="relative rounded-3xl bg-ink text-canvas p-8 md:p-10 flex flex-col justify-between overflow-hidden"
           >
-            <div className="bg-carbon rounded-2xl p-8 border border-ash/50">
-              <p className="font-sans text-[13px] text-muted mb-8 leading-relaxed">
-                Décrivez votre projet — emplacement, style, taille approximative, idée de référence.
-                Mark vous répond pour fixer une consultation.
+            <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full blur-[90px] opacity-30" style={{ background: 'radial-gradient(circle, #16745A, transparent 70%)' }} />
+            <div className="relative">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-green-3 mb-6">Prêt·e à vous lancer&nbsp;?</p>
+              <h3 className="font-display text-[clamp(1.8rem,3.6vw,2.6rem)] font-400 leading-[1.1] mb-5">
+                Votre projet commence par <span className="italic-display text-green-3">une demande</span>.
+              </h3>
+              <p className="font-sans text-[15px] text-ink-soft leading-relaxed max-w-sm mb-9">
+                Choisissez votre artiste, décrivez votre idée et vos disponibilités.
+                On vous répond en personne pour fixer la consultation — jamais un devis automatique.
               </p>
+            </div>
 
-              <form
-                className="space-y-4"
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  window.location.href = `tel:${STUDIO.phoneRaw}`
-                }}
+            <div className="relative">
+              <button
+                onClick={() => openBooking()}
+                className="group w-full inline-flex items-center justify-center gap-2 py-4 bg-canvas text-ink font-600 rounded-full text-sm transition-transform active:scale-[0.99] hover:bg-green hover:text-canvas"
               >
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block font-label text-[10px] tracking-ultrawide uppercase text-muted mb-2">
-                      Prénom
-                    </label>
-                    <input type="text" placeholder="Votre prénom" className="field" required />
-                  </div>
-                  <div>
-                    <label className="block font-label text-[10px] tracking-ultrawide uppercase text-muted mb-2">
-                      Téléphone
-                    </label>
-                    <input type="tel" placeholder="06 00 00 00 00" className="field" />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block font-label text-[10px] tracking-ultrawide uppercase text-muted mb-2">
-                    Style souhaité
-                  </label>
-                  <select className="field">
-                    <option value="">Choisir un style…</option>
-                    <option>Portrait réaliste</option>
-                    <option>Nature & Animal</option>
-                    <option>Noir & Gris</option>
-                    <option>Couleur & Réalisme</option>
-                    <option>Je ne sais pas encore</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block font-label text-[10px] tracking-ultrawide uppercase text-muted mb-2">
-                    Votre projet
-                  </label>
-                  <textarea
-                    rows={5}
-                    placeholder="Décrivez votre idée, l'emplacement sur le corps, la taille approximative…"
-                    className="field"
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-gold text-ink font-semibold rounded-full hover:bg-gold-light transition-all duration-300 text-sm shadow-lg shadow-gold/20"
-                >
-                  Envoyer le projet à Mark
-                </button>
-
-                <p className="text-center font-sans text-[11px] text-muted/50">
-                  Ou appelez directement :{' '}
-                  <a href={`tel:${STUDIO.phoneRaw}`} className="text-gold/60 hover:text-gold transition-colors">
-                    {STUDIO.phone}
-                  </a>
-                </p>
-              </form>
+                Prendre rendez-vous
+                <ArrowRight size={16} strokeWidth={2.25} className="group-hover:translate-x-0.5 transition-transform" />
+              </button>
+              <p className="text-center font-sans text-[12px] text-ink-soft mt-4">
+                Ou par téléphone :{' '}
+                <a href={`tel:${HOUSE.phoneRaw}`} className="text-green-3 font-600 hover:text-canvas transition-colors">{HOUSE.phone}</a>
+              </p>
             </div>
           </motion.div>
         </div>

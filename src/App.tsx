@@ -1,53 +1,54 @@
 import './App.css'
+import { BookingProvider } from './booking'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import QuickInfo from './components/QuickInfo'
-import Gallery from './components/Gallery'
 import About from './components/About'
-import Styles from './components/Styles'
+import Artists from './components/Artists'
+import Gallery from './components/Gallery'
 import Process from './components/Process'
 import Testimonials from './components/Testimonials'
 import Instagram from './components/Instagram'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import FloatingCTA from './components/FloatingCTA'
+import BookingModal from './components/BookingModal'
 
 export default function App() {
   return (
-    <div className="bg-ink font-sans text-cream">
-      <Navbar />
+    <BookingProvider>
+      <div className="bg-canvas font-sans text-ink">
+        <Navbar />
 
-      <main>
-        {/* 1. Accroche — nom, spécialité, appel */}
-        <Hero />
+        <main>
+          {/* 1. Accroche — slogan + trio */}
+          <Hero />
 
-        {/* 2. Infos immédiates — téléphone, studio privé, Savoie */}
-        <QuickInfo />
+          {/* 2. Le collectif familial */}
+          <About />
 
-        {/* 3. Portfolio — la preuve par l'image */}
-        <Gallery />
+          {/* 3. Les trois artistes */}
+          <Artists />
 
-        {/* 4. L'artiste */}
-        <About />
+          {/* 4. Galerie photo/vidéo par artiste */}
+          <Gallery />
 
-        {/* 5. Les styles */}
-        <Styles />
+          {/* 5. Le déroulé */}
+          <Process />
 
-        {/* 6. Comment ça se passe */}
-        <Process />
+          {/* 6. Avis clients */}
+          <Testimonials />
 
-        {/* 7. Avis clients */}
-        <Testimonials />
+          {/* 7. Instagram */}
+          <Instagram />
 
-        {/* 8. Feed Instagram */}
-        <Instagram />
+          {/* 8. Le studio + prise de RDV */}
+          <Contact />
+        </main>
 
-        {/* 9. Prendre rendez-vous */}
-        <Contact />
-      </main>
-
-      <Footer />
-      <FloatingCTA />
-    </div>
+        <Footer />
+        <FloatingCTA />
+        <BookingModal />
+      </div>
+    </BookingProvider>
   )
 }
