@@ -32,8 +32,8 @@ export default function About() {
               </p>
               <p>
                 Trois mains, trois styles, une même exigence : des pièces pensées pour durer,
-                réalisées dans le calme d'un studio privé — jamais à la chaîne. Vous n'êtes pas
-                un client de plus, vous entrez dans la maison.
+                réalisées dans le calme d'un studio privé, jamais à la chaîne. Vous n'êtes pas
+                un client de plus : vous entrez dans la maison.
               </p>
             </div>
 

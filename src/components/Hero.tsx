@@ -77,8 +77,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6, ease }}
           className="mt-5 sm:mt-7 max-w-xl font-sans text-[15px] sm:text-[17px] leading-relaxed font-400 text-white/85 text-shadow-sub text-pretty"
         >
-          {HOUSE.intro} Marc au réalisme, Isabelle au fine line, Indi au graphique —
-          ils tatouent en hauteur à {HOUSE.city} des pièces pensées pour traverser les décennies.
+          {HOUSE.intro} Marc au réalisme, Isabelle au fine line, Indi au graphique.
+          Ils tatouent en hauteur à {HOUSE.city} des pièces pensées pour traverser les décennies.
         </motion.p>
 
         {/* CTAs */}

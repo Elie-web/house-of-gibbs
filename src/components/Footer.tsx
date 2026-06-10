@@ -77,7 +77,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-ink-line flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="font-sans text-xs text-muted">© 2026 {HOUSE.name}. Tous droits réservés.</p>
-          <p className="font-mono text-[10px] uppercase tracking-wide text-muted">Marc · Isabelle · Indi — {HOUSE.city}</p>
+          <p className="font-mono text-[10px] uppercase tracking-wide text-muted">Marc · Isabelle · Indi · {HOUSE.city}</p>
         </div>
       </div>
     </footer>

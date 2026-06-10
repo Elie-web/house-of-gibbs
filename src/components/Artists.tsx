@@ -29,7 +29,7 @@ export default function Artists() {
           </h2>
           <p className="font-sans text-[15px] md:text-base text-soft leading-relaxed mt-5">
             Chacun son style, sa main, son univers. Choisissez l'artiste dont le travail
-            vous parle — ou laissez-nous vous orienter.
+            vous parle, ou laissez-nous vous orienter.
           </p>
         </motion.div>
 

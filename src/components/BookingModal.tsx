@@ -41,13 +41,13 @@ export default function BookingModal() {
     // Démo sans backend : ouvre le client mail pré-rempli vers HOUSE.email.
     // Pour un envoi 100% automatique, branchez ici un service (EmailJS,
     // Formspree, Resend…) à la place du mailto ci-dessous.
-    const subject = `Demande de RDV — ${data.get('prenom')} · ${artistLabel}`
+    const subject = `Demande de RDV · ${data.get('prenom')} · ${artistLabel}`
     const body = [
       `Prénom    : ${data.get('prenom')}`,
       `Téléphone : ${data.get('tel')}`,
-      `E-mail    : ${data.get('email') || '—'}`,
+      `E-mail    : ${data.get('email') || 'Non communiqué'}`,
       `Artiste   : ${artistLabel}`,
-      `Dispos    : ${data.get('dispos') || '—'}`,
+      `Dispos    : ${data.get('dispos') || 'Non précisées'}`,
       '',
       'Projet :',
       `${data.get('projet')}`,

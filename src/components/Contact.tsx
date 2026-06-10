@@ -40,7 +40,7 @@ export default function Contact() {
               <div>
                 <p className="font-sans text-sm font-600 text-ink mb-1">Studio privé en hauteur</p>
                 <p className="font-sans text-[13.5px] text-soft leading-relaxed">
-                  {HOUSE.view}. Sur rendez-vous uniquement — pas de passage. On vous reçoit
+                  {HOUSE.view}. Sur rendez-vous uniquement, pas de passage. On vous reçoit
                   dans le calme, à la lumière de la montagne.
                 </p>
               </div>
@@ -120,7 +120,7 @@ export default function Contact() {
               </h3>
               <p className="font-sans text-[15px] text-ink-soft leading-relaxed max-w-sm mb-9">
                 Choisissez votre artiste, décrivez votre idée et vos disponibilités.
-                On vous répond en personne pour fixer la consultation — jamais un devis automatique.
+                On vous répond en personne pour fixer la consultation, jamais un devis automatique.
               </p>
             </div>
 

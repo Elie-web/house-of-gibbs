@@ -7,6 +7,7 @@
 
 import {
   poitrine,
+  heroLandscape,
   brasGauche,
   avantBras2,
   forearm,
@@ -33,8 +34,8 @@ export const HOUSE = {
   address:    '190 Chemin de Moulevin',
   cityZip:    '73190 Saint-Baldoph',
 
-  // Photo de fond du hero (plein écran). Remplaçable par une vraie photo du studio.
-  heroImage:  poitrine,
+  // Photo de fond du hero (plein écran, paysage). Remplaçable par une vraie photo du studio.
+  heroImage:  heroLandscape,
   mapsUrl:    'https://maps.google.com/?q=190+Chemin+de+Moulevin+73190+Saint-Baldoph',
   mapEmbed:   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2785.4!2d5.9882!3d45.5497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478b8f3a3b9e8f0b%3A0x1234!2s190+Chemin+de+Moulevin%2C+73190+Saint-Baldoph!5e0!3m2!1sfr!2sfr!4v1700000000000',
 
@@ -74,12 +75,12 @@ export const ARTISTS: Artist[] = [
     role:      'Le père',
     specialty: 'Réalisme · noir & gris',
     accent:    '#2B312E', // graphite
-    bio:       "Près de trente ans à ne faire que ça. Marc maîtrise le réalisme et le noir & gris — des pièces pensées pour vieillir sans se brouiller, traverser les décennies sans perdre le trait.",
+    bio:       "Près de trente ans à ne faire que ça. Marc maîtrise le réalisme et le noir & gris : des pièces pensées pour vieillir sans se brouiller, traverser les décennies sans perdre le trait.",
     portrait:  markSelfie,
     instagram: 'https://www.instagram.com/markblackscab/',
     gallery: [
       { type: 'image', src: poitrine,   alt: 'Tatouage pleine poitrine, réalisme noir & gris' },
-      { type: 'video', src: forearm,    alt: 'Reel — avant-bras en cours', href: 'https://www.instagram.com/markblackscab/' },
+      { type: 'video', src: forearm,    alt: 'Reel · avant-bras en cours', href: 'https://www.instagram.com/markblackscab/' },
       { type: 'image', src: brasGauche, alt: 'Tatouage bras gauche, noir & gris' },
       { type: 'image', src: avantBras2, alt: 'Avant-bras, détail réaliste' },
       { type: 'image', src: triceps,    alt: 'Tatouage triceps' },
@@ -98,7 +99,7 @@ export const ARTISTS: Artist[] = [
     instagram: 'https://www.instagram.com/',
     gallery: [
       { type: 'image', src: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800&q=85&fit=crop', alt: 'Composition florale fine line' },
-      { type: 'video', src: 'https://images.unsplash.com/photo-1590246814883-57c511e86a22?w=800&q=85&fit=crop', alt: 'Reel — fine line en cours', href: 'https://www.instagram.com/' },
+      { type: 'video', src: 'https://images.unsplash.com/photo-1590246814883-57c511e86a22?w=800&q=85&fit=crop', alt: 'Reel · fine line en cours', href: 'https://www.instagram.com/' },
       { type: 'image', src: 'https://images.unsplash.com/photo-1562962230-16e4623d36e6?w=800&q=85&fit=crop', alt: 'Tatouage couleur douce' },
       { type: 'image', src: 'https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&q=85&fit=crop', alt: 'Détail floral délicat' },
       { type: 'image', src: 'https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=800&q=85&fit=crop', alt: 'Fine line botanique' },
@@ -112,13 +113,13 @@ export const ARTISTS: Artist[] = [
     role:      'Le fils',
     specialty: 'Graphique · blackwork · contemporain',
     accent:    '#11998E', // vert-teal frais
-    bio:       "La nouvelle génération de la maison. Indi travaille le graphique, le blackwork et les formes contemporaines — des pièces nettes, franches, taillées pour aujourd'hui.",
+    bio:       "La nouvelle génération de la maison. Indi travaille le graphique, le blackwork et les formes contemporaines : des pièces nettes, franches, taillées pour aujourd'hui.",
     portrait:  'https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?w=800&q=85&fit=crop',
     instagram: 'https://www.instagram.com/',
     gallery: [
       { type: 'image', src: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=800&q=85&fit=crop', alt: 'Tatouage graphique blackwork' },
       { type: 'image', src: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=800&q=85&fit=crop', alt: 'Blackwork contemporain' },
-      { type: 'video', src: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=800&q=85&fit=crop', alt: 'Reel — pièce graphique', href: 'https://www.instagram.com/' },
+      { type: 'video', src: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=800&q=85&fit=crop', alt: 'Reel · pièce graphique', href: 'https://www.instagram.com/' },
       { type: 'image', src: 'https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=800&q=85&fit=crop', alt: 'Formes contemporaines' },
       { type: 'image', src: 'https://images.unsplash.com/photo-1562673255-ef78d8abf540?w=800&q=85&fit=crop', alt: 'Tatouage bras graphique' },
       { type: 'image', src: 'https://images.unsplash.com/photo-1611601322175-ef8ec8c85f01?w=800&q=85&fit=crop', alt: 'Blackwork détail' },
@@ -131,7 +132,7 @@ export const PROCESS = [
   {
     step:  '01',
     title: 'La consultation',
-    desc:  "Vous choisissez l'artiste, exposez votre idée — référence, emplacement, signification. On écoute, on conseille, on oriente vers ce qui vieillira bien.",
+    desc:  "Vous choisissez l'artiste, exposez votre idée : référence, emplacement, signification. On écoute, on conseille, on oriente vers ce qui vieillira bien.",
   },
   {
     step:  '02',

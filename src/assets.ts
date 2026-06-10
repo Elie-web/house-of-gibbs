@@ -7,6 +7,7 @@ import forearm   from './assets/tatoo forearm-converti-depuis-jpg.webp'
 import brasGauche from './assets/tatoo bras gauche-converti-depuis-jpg.webp'
 import poitrine  from './assets/tatoo pointrine complète homme-converti-depuis-jpg.webp'
 import markSelfie from './assets/mark selfie-converti-depuis-jpg.webp'
+import heroLandscape from './assets/hero-tattoo-landscape.webp'
 
 export {
   epaule,
@@ -17,4 +18,5 @@ export {
   brasGauche,
   poitrine,
   markSelfie,
+  heroLandscape,
 }
