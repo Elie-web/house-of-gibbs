@@ -3,11 +3,11 @@ import { HOUSE, ARTISTS } from '../config'
 import { InstagramIcon } from './icons'
 
 const NAV_LINKS = [
-  { label: 'Le collectif', href: '#collectif' },
   { label: 'Les artistes', href: '#artistes' },
   { label: 'Galerie',      href: '#galerie' },
+  { label: 'Avis',         href: '#avis' },
   { label: 'Instagram',    href: '#instagram' },
-  { label: 'Le studio',    href: '#studio' },
+  { label: 'Contact',      href: '#studio' },
 ]
 
 export default function Footer() {
@@ -67,7 +67,7 @@ export default function Footer() {
               href={HOUSE.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-1.5 text-green-3 text-xs font-600 mt-2 hover:gap-2.5 transition-all"
+              className="group inline-flex items-center gap-1.5 text-green-3 text-xs font-600 mt-2 hover:gap-2.5 transition-[gap]"
             >
               Voir sur Maps
               <ArrowUpRight size={11} />
@@ -75,9 +75,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-ink-line flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="pt-8 border-t border-ink-line flex flex-col md:flex-row items-center justify-between gap-3 text-center">
           <p className="font-sans text-xs text-muted">© 2026 {HOUSE.name}. Tous droits réservés.</p>
-          <p className="font-mono text-[10px] uppercase tracking-wide text-muted">Marc · Isabelle · Indi · {HOUSE.city}</p>
+          <p className="font-sans text-xs text-muted">
+            Site web réalisé par{' '}
+            <a
+              href="https://elieageron.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-600 text-ink-soft hover:text-green-3 underline underline-offset-2 decoration-ink-line hover:decoration-green-3 transition-colors"
+            >
+              Elie Ageron
+            </a>
+          </p>
         </div>
       </div>
     </footer>

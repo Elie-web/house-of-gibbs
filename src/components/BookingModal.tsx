@@ -77,7 +77,7 @@ export default function BookingModal() {
             exit={{ y: 40, opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.35, ease }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full sm:max-w-lg max-h-[92vh] overflow-y-auto no-scrollbar bg-canvas rounded-t-3xl sm:rounded-3xl border border-line shadow-soft-lift"
+            className="relative w-full sm:max-w-lg max-h-[92vh] overflow-y-auto overscroll-contain no-scrollbar bg-canvas rounded-t-3xl sm:rounded-3xl border border-line shadow-soft-lift"
           >
             {/* En-tête */}
             <div className="sticky top-0 z-10 flex items-start justify-between gap-4 px-6 sm:px-8 pt-7 pb-5 bg-canvas/95 backdrop-blur-md border-b border-line">
@@ -103,7 +103,7 @@ export default function BookingModal() {
                 <div className="w-14 h-14 mx-auto mb-6 rounded-full bg-green-tint flex items-center justify-center">
                   <Check size={26} strokeWidth={2.5} className="text-green-2" />
                 </div>
-                <h3 className="font-display text-2xl font-500 text-ink mb-3">Presque envoyé&nbsp;!</h3>
+                <h3 className="font-display text-2xl font-500 text-ink mb-3">Dernière étape</h3>
                 <p className="font-sans text-[15px] text-soft leading-relaxed max-w-sm mx-auto mb-8">
                   Votre messagerie s'est ouverte avec la demande pré-remplie. Vérifiez,
                   puis appuyez sur <span className="text-ink font-600">Envoyer</span>. On vous
@@ -141,7 +141,7 @@ export default function BookingModal() {
                           key={a.id || 'any'}
                           onClick={() => setArtist(a.id)}
                           style={{ '--accent': a.accent } as React.CSSProperties}
-                          className={`rounded-xl border px-2.5 py-3 text-center transition-all ${
+                          className={`rounded-xl border px-2.5 py-3 text-center transition-[background-color,border-color,box-shadow] duration-200 ${
                             active
                               ? 'border-[var(--accent)] ring-2 ring-[var(--accent)] bg-canvas-2'
                               : 'border-line bg-white hover:border-muted'
@@ -160,17 +160,17 @@ export default function BookingModal() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="b-prenom" className="block font-mono text-[10px] tracking-widest uppercase text-muted">Prénom</label>
-                    <input id="b-prenom" name="prenom" type="text" placeholder="Votre prénom" className="field" required />
+                    <input id="b-prenom" name="prenom" type="text" autoComplete="given-name" placeholder="Votre prénom" className="field" required />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="b-tel" className="block font-mono text-[10px] tracking-widest uppercase text-muted">Téléphone</label>
-                    <input id="b-tel" name="tel" type="tel" placeholder="06 00 00 00 00" className="field" required />
+                    <input id="b-tel" name="tel" type="tel" autoComplete="tel" inputMode="tel" placeholder="06 00 00 00 00" className="field" required />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <label htmlFor="b-email" className="block font-mono text-[10px] tracking-widest uppercase text-muted">E-mail (optionnel)</label>
-                  <input id="b-email" name="email" type="email" placeholder="vous@email.com" className="field" />
+                  <input id="b-email" name="email" type="email" autoComplete="email" spellCheck={false} placeholder="vous@email.com" className="field" />
                 </div>
 
                 <div className="space-y-2">

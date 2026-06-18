@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { ARTISTS } from '../config'
 import { InstagramIcon } from './icons'
+import SectionHeader from './SectionHeader'
 
 // Un échantillon par artiste pour la bande défilante
 const FEED = ARTISTS.flatMap((a) =>
@@ -15,25 +16,23 @@ export default function Instagram() {
   const ease = [0.22, 1, 0.36, 1] as const
 
   return (
-    <section id="instagram" ref={ref} className="py-16 sm:py-24 md:py-32 bg-canvas overflow-hidden">
+    <section id="instagram" ref={ref} className="py-16 sm:py-24 md:py-32 overflow-hidden">
       <div className="max-w-container mx-auto px-5 md:px-10">
 
+        <SectionHeader
+          className="mb-8"
+          kicker="Instagram"
+          title={<>Ce qui sort du studio <span className="italic-display text-gradient-green-static">en ce moment</span>.</>}
+          lead="Entre deux séances, la maison continue sur Instagram. Suivez chaque artiste au quotidien."
+        />
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease }}
+          transition={{ duration: 0.6, delay: 0.2, ease }}
           className="mb-10"
         >
-          <p className="font-mono text-[11px] uppercase tracking-widest text-green mb-5">Instagram</p>
-          <h2 className="font-display text-[clamp(1.9rem,4.4vw,3rem)] font-400 tracking-tight text-ink leading-[1.05] mb-3">
-            Les derniers travaux, <span className="italic-display text-gradient-green-static">en direct</span>.
-          </h2>
-          <p className="font-sans text-[15px] text-soft max-w-xl">
-            Reels, stories et pièces fraîches. Suivez chaque artiste sur son compte.
-          </p>
-
           {/* Liens profils par artiste */}
-          <div className="flex flex-wrap gap-2.5 mt-7">
+          <div className="flex flex-wrap justify-center gap-2.5">
             {ARTISTS.map((a) => (
               <a
                 key={a.id}
@@ -47,7 +46,7 @@ export default function Instagram() {
                   <InstagramIcon size={14} strokeWidth={2.25} />
                 </span>
                 <span className="font-sans text-[13px] font-600 text-ink">@{a.handle}</span>
-                <ArrowUpRight size={14} className="text-muted group-hover:text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <ArrowUpRight size={14} aria-hidden="true" className="text-muted group-hover:text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-[transform,color]" />
               </a>
             ))}
           </div>

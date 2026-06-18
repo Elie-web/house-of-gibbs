@@ -1,4 +1,4 @@
-// ================================================================
+﻿// ================================================================
 // CONFIGURATION HOUSE OF GIBBS — Personnalisez uniquement ce fichier
 // ----------------------------------------------------------------
 // Collectif familial de tatoueurs : Marc (le père), Isabelle (la mère),
@@ -40,6 +40,15 @@ export const HOUSE = {
   mapEmbed:   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2785.4!2d5.9882!3d45.5497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478b8f3a3b9e8f0b%3A0x1234!2s190+Chemin+de+Moulevin%2C+73190+Saint-Baldoph!5e0!3m2!1sfr!2sfr!4v1700000000000',
 
   instagram:  'https://www.instagram.com/',
+
+  // --- Envoi du formulaire par e-mail (automatique) --------------
+  // Laisser vide => repli sur l'ouverture du client mail (mailto).
+  // Pour un envoi 100% automatique, créez un endpoint gratuit puis collez-le ici :
+  //  • Web3Forms  : formEndpoint = 'https://api.web3forms.com/submit'  + formAccessKey = '<votre-clé>'
+  //  • Formspree  : formEndpoint = 'https://formspree.io/f/<votre-id>' (laisser formAccessKey vide)
+  // Les demandes arrivent alors directement sur HOUSE.email.
+  formEndpoint:  '',
+  formAccessKey: '',
 } as const
 
 // --- Les artistes -------------------------------------------------
@@ -64,6 +73,8 @@ export type Artist = {
   bio: string
   portrait: string
   instagram: string
+  facebook?: string
+  maps?: string
   gallery: GalleryItem[]
 }
 
@@ -75,9 +86,11 @@ export const ARTISTS: Artist[] = [
     role:      'Le père',
     specialty: 'Réalisme · noir & gris',
     accent:    '#2B312E', // graphite
-    bio:       "Près de trente ans à ne faire que ça. Marc maîtrise le réalisme et le noir & gris : des pièces pensées pour vieillir sans se brouiller, traverser les décennies sans perdre le trait.",
+    bio:       "Si vous voulez un réalisme noir & gris qui tient dans le temps (les détails, les dégradés, le trait), Marc est la bonne personne. Trente ans à ne faire que ça. Des pièces qui restent nettes, pas dans six mois, dans vingt ans.",
     portrait:  markSelfie,
-    instagram: 'https://www.instagram.com/markblackscab/',
+    instagram: 'https://www.instagram.com/markblackscab/?hl=fr',
+    facebook:  'https://www.facebook.com/p/Blackscab-Tattoos-Chambéry-73-100063680827033/?locale=fr_FR',
+    maps:      'https://www.google.com/search?kgmid=/g/11k9s678z0&hl=fr-FR&q=Blackscab%20Tattoos',
     gallery: [
       { type: 'image', src: poitrine,   alt: 'Tatouage pleine poitrine, réalisme noir & gris' },
       { type: 'video', src: forearm,    alt: 'Reel · avant-bras en cours', href: 'https://www.instagram.com/markblackscab/' },
@@ -94,7 +107,7 @@ export const ARTISTS: Artist[] = [
     role:      'La mère',
     specialty: 'Fine line · floral · couleur douce',
     accent:    '#16745A', // émeraude (couleur maison)
-    bio:       "Le trait fin, les compositions végétales, la couleur maniée avec retenue. Isabelle dessine des pièces délicates et lumineuses, au plus près de la peau et de l'histoire qu'on lui confie.",
+    bio:       "Avec Isabelle, vous repartez avec ce que vous imaginiez. Parfois mieux. Elle écoute avant de dessiner, et ça se voit dans le résultat. Fine line, compositions florales, couleurs douces : tout ce qui demande légèreté et précision, c'est son terrain.",
     portrait:  'https://images.unsplash.com/photo-1581824283135-0666cf353f35?w=800&q=85&fit=crop',
     instagram: 'https://www.instagram.com/',
     gallery: [
@@ -113,7 +126,7 @@ export const ARTISTS: Artist[] = [
     role:      'Le fils',
     specialty: 'Graphique · blackwork · contemporain',
     accent:    '#11998E', // vert-teal frais
-    bio:       "La nouvelle génération de la maison. Indi travaille le graphique, le blackwork et les formes contemporaines : des pièces nettes, franches, taillées pour aujourd'hui.",
+    bio:       "Si vous cherchez quelque chose de graphique, de net, qui sort des sentiers battus. C'est Indi. Blackwork, formes contemporaines, compositions avec de la personnalité. Il ne copie pas : il dessine quelque chose qui n'existe qu'en un seul exemplaire.",
     portrait:  'https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?w=800&q=85&fit=crop',
     instagram: 'https://www.instagram.com/',
     gallery: [
@@ -128,21 +141,74 @@ export const ARTISTS: Artist[] = [
 ]
 
 // --- Le déroulé (3 étapes) ---------------------------------------
+// id : sert à associer le mockup visuel (voir ProcessMockups.tsx)
+// tagline : phrase courte, lisible en un coup d'œil
+// points : 3 repères scannables
 export const PROCESS = [
   {
-    step:  '01',
-    title: 'La consultation',
-    desc:  "Vous choisissez l'artiste, exposez votre idée : référence, emplacement, signification. On écoute, on conseille, on oriente vers ce qui vieillira bien.",
+    step:    '01',
+    id:      'consultation',
+    title:   'La consultation',
+    tagline: 'Votre idée, bien comprise.',
+    points:  ["On cerne exactement ce que vous voulez", "On identifie l'artiste qui correspond à votre style", 'Conseils pour un tatouage qui vieillit bien'],
   },
   {
-    step:  '02',
-    title: 'Le projet',
-    desc:  "Un dessin sur mesure, jamais générique. Pensé pour votre morphologie, pour la lumière du studio, pour durer des décennies.",
+    step:    '02',
+    id:      'projet',
+    title:   'Le projet',
+    tagline: "Un dessin rien qu'à vous.",
+    points:  ['Conçu pour votre corps, pas copié', 'Jamais un motif catalogue', "Vous validez avant qu'on commence"],
   },
   {
-    step:  '03',
-    title: 'La séance',
-    desc:  "Studio privé en hauteur, calme, vue sur Belledonne. On travaille dans la précision. Vous repartez avec une pièce qui vous ressemble.",
+    step:    '03',
+    id:      'seance',
+    title:   'La séance',
+    tagline: 'Votre séance, au calme.',
+    points:  ['Un seul client à la fois, sans interruption', 'Précision et hygiène irréprochable', 'Vous repartez avec quelque chose qui vous ressemble'],
+  },
+]
+
+// --- Preuve sociale & réassurance --------------------------------
+// ⚠️ Chiffres à ajuster avec les vraies données Google de la maison.
+export const SOCIAL = {
+  rating:      '5,0',
+  reviewCount: 27,            // ← nombre d'avis réel à renseigner
+  reviewsUrl:  'https://www.google.com/search?kgmid=/g/11k9s678z0&hl=fr-FR&q=Blackscab%20Tattoos',
+}
+
+// Repères de confiance affichés haut sur le site (bande de réassurance)
+export const REASSURANCE = [
+  { icon: 'star',     title: `${SOCIAL.rating} sur Google`,        sub: `${SOCIAL.reviewCount} avis vérifiés` },
+  { icon: 'clock',    title: '~30 ans de métier',                  sub: 'Des pièces qui tiennent dans le temps' },
+  { icon: 'shield',   title: 'Hygiène stricte',                    sub: 'Chaque séance, sans compromis sur le soin' },
+  { icon: 'mountain', title: 'Studio privé, sur RDV',              sub: "Votre projet est le seul du jour" },
+] as const
+
+// --- Questions fréquentes ----------------------------------------
+export const FAQ = [
+  {
+    q: 'Comment se passe la première prise de contact ?',
+    a: "Par le formulaire de rendez-vous ou par téléphone. On revient toujours vers vous en personne pour échanger sur votre idée et fixer une consultation.",
+  },
+  {
+    q: 'Combien coûte un tatouage ?',
+    a: "Le prix dépend de la taille, de l'emplacement et du niveau de détail. On vous donne une estimation claire après la consultation, jamais un tarif au mètre carré.",
+  },
+  {
+    q: 'Faut-il verser un acompte ?',
+    a: "Oui. Un acompte confirme votre créneau et lance le travail de dessin. Il est ensuite déduit du prix de la séance.",
+  },
+  {
+    q: 'Tatouez-vous les mineurs ?',
+    a: "Non, la maison tatoue uniquement les personnes majeures. Une pièce d'identité vous sera demandée le jour de la séance.",
+  },
+  {
+    q: 'Comment choisir entre Marc, Isabelle et Indi ?',
+    a: "Selon le style qui vous parle : réalisme noir & gris pour Marc, fine line et couleur douce pour Isabelle, graphique et blackwork pour Indi. Dans le doute, décrivez votre projet : on vous oriente vers la bonne main.",
+  },
+  {
+    q: 'Comment entretenir un tatouage frais ?',
+    a: "On vous remet des consignes de soin précises en fin de séance et on reste joignables pour la cicatrisation. Un tatouage bien entretenu garde son trait net pendant des décennies.",
   },
 ]
 

@@ -1,9 +1,11 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { ArrowRight, Images } from 'lucide-react'
+import { ArrowRight, Images, MapPin } from 'lucide-react'
 import { ARTISTS } from '../config'
-import { InstagramIcon } from './icons'
+import { InstagramIcon, FacebookIcon } from './icons'
 import { useBooking } from '../booking'
+import Magnetic from './Magnetic'
+import SectionHeader from './SectionHeader'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -13,25 +15,15 @@ export default function Artists() {
   const { openBooking } = useBooking()
 
   return (
-    <section id="artistes" ref={ref} className="py-16 sm:py-24 md:py-32 px-5 md:px-10 bg-canvas">
+    <section id="artistes" ref={ref} className="py-16 sm:py-24 md:py-32 px-5 md:px-10">
       <div className="max-w-container mx-auto">
 
         {/* En-tête */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease }}
-          className="max-w-2xl mb-14 md:mb-20"
-        >
-          <p className="font-mono text-[11px] uppercase tracking-widest text-green mb-5">Les artistes</p>
-          <h2 className="font-display text-[clamp(2.2rem,5vw,3.6rem)] font-400 tracking-tight text-ink leading-[1.05]">
-            Une famille, <span className="italic-display text-gradient-green-static">trois signatures</span>.
-          </h2>
-          <p className="font-sans text-[15px] md:text-base text-soft leading-relaxed mt-5">
-            Chacun son style, sa main, son univers. Choisissez l'artiste dont le travail
-            vous parle, ou laissez-nous vous orienter.
-          </p>
-        </motion.div>
+        <SectionHeader
+          kicker="Les artistes"
+          title={<>Père, mère, fils. <span className="italic-display text-gradient-green-static">Choisissez la main qui vous parle.</span></>}
+          lead="Marc au réalisme, Isabelle au fine line, Indi au graphique. Chacun son style, une seule maison."
+        />
 
         {/* Cartes artistes */}
         <div className="space-y-5 md:space-y-7">
@@ -42,12 +34,10 @@ export default function Artists() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease }}
               style={{ '--accent': a.accent } as React.CSSProperties}
-              className={`group grid md:grid-cols-[0.85fr_1.15fr] gap-6 md:gap-10 items-center bg-white rounded-3xl border border-line p-5 md:p-7 shadow-card ${
-                i % 2 === 1 ? 'md:[&>figure]:order-2' : ''
-              }`}
+              className="group grid md:grid-cols-[260px_1fr] gap-6 md:gap-10 items-center bg-white/70 backdrop-blur-sm rounded-3xl border border-line p-5 md:p-7 shadow-luxe transition-shadow duration-400 hover:shadow-luxe-hover"
             >
               {/* Portrait */}
-              <figure className="relative rounded-2xl overflow-hidden aspect-[4/5] md:aspect-[5/6] bg-canvas-2">
+              <figure className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-canvas-2 w-full md:max-w-[260px] mx-auto">
                 <img
                   src={a.portrait}
                   alt={`${a.name}, alias ${a.handle}`}
@@ -63,9 +53,9 @@ export default function Artists() {
               </figure>
 
               {/* Texte */}
-              <div className="md:pr-6">
-                <div className="flex items-baseline gap-3 flex-wrap mb-1">
-                  <h3 className="font-display text-3xl md:text-4xl font-500 text-ink leading-none">{a.name}</h3>
+              <div className="flex flex-col items-center text-center md:items-start md:text-left">
+                <div className="flex items-baseline justify-center md:justify-start gap-3 flex-wrap mb-1">
+                  <h3 className="font-display text-4xl md:text-5xl font-500 text-ink leading-none">{a.name}</h3>
                   <span
                     className="font-mono text-xs uppercase tracking-widest"
                     style={{ color: 'var(--accent)' }}
@@ -73,21 +63,23 @@ export default function Artists() {
                     @{a.handle}
                   </span>
                 </div>
-                <p className="font-sans text-[13px] font-600 text-soft mb-5">{a.specialty}</p>
+                <p className="font-sans text-sm font-600 text-green-2 mb-5">{a.specialty}</p>
 
-                <p className="font-sans text-[15px] text-soft leading-relaxed mb-7 max-w-xl text-pretty">
+                <p className="font-sans text-base md:text-[17px] text-ink/75 leading-relaxed mb-7 max-w-xl mx-auto md:mx-0 text-pretty">
                   {a.bio}
                 </p>
 
-                <div className="flex flex-wrap items-center gap-3">
-                  <button
-                    onClick={() => openBooking(a.id)}
-                    className="group/btn inline-flex items-center gap-2 pl-5 pr-4 py-3 text-canvas text-sm font-600 rounded-full transition-transform active:scale-[0.98]"
-                    style={{ background: 'var(--accent)' }}
-                  >
-                    Réserver avec {a.name}
-                    <ArrowRight size={15} strokeWidth={2.25} className="group-hover/btn:translate-x-0.5 transition-transform" />
-                  </button>
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
+                  <Magnetic strength={0.3}>
+                    <button
+                      onClick={() => openBooking(a.id)}
+                      className="group/btn inline-flex items-center gap-2 pl-5 pr-4 py-3 text-canvas text-sm font-600 rounded-full shadow-[0_14px_30px_-14px_var(--accent)] transition-transform active:scale-[0.98]"
+                      style={{ background: 'var(--accent)' }}
+                    >
+                      Réserver avec {a.name}
+                      <ArrowRight size={15} strokeWidth={2.25} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                    </button>
+                  </Magnetic>
                   <a
                     href={`#galerie`}
                     className="inline-flex items-center gap-2 px-5 py-3 text-sm font-600 text-ink rounded-full border border-line hover:bg-canvas-2 transition-colors"
@@ -99,11 +91,33 @@ export default function Artists() {
                     href={a.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-11 h-11 flex items-center justify-center text-ink rounded-full border border-line hover:bg-canvas-2 transition-colors"
+                    className="w-11 h-11 flex items-center justify-center text-ink rounded-full border border-line hover:bg-canvas-2 hover:border-ink transition-colors"
                     aria-label={`Instagram de ${a.name}`}
                   >
                     <InstagramIcon size={17} strokeWidth={2} />
                   </a>
+                  {a.facebook && (
+                    <a
+                      href={a.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-11 h-11 flex items-center justify-center text-ink rounded-full border border-line hover:bg-canvas-2 hover:border-ink transition-colors"
+                      aria-label={`Facebook de ${a.name}`}
+                    >
+                      <FacebookIcon size={17} strokeWidth={2} />
+                    </a>
+                  )}
+                  {a.maps && (
+                    <a
+                      href={a.maps}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-11 h-11 flex items-center justify-center text-ink rounded-full border border-line hover:bg-canvas-2 hover:border-ink transition-colors"
+                      aria-label={`${a.name} sur Google Maps`}
+                    >
+                      <MapPin size={17} strokeWidth={2} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.article>

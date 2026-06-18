@@ -1,13 +1,17 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Star, ArrowUpRight } from 'lucide-react'
-import { REVIEWS, HOUSE } from '../config'
+import { REVIEWS, SOCIAL } from '../config'
+import { GoogleG } from './icons'
+import SectionHeader from './SectionHeader'
 
-function Stars({ n }: { n: number }) {
+const ease = [0.22, 1, 0.36, 1] as const
+
+function Stars({ n, size = 15 }: { n: number; size?: number }) {
   return (
     <div className="flex gap-0.5" aria-label={`${n} sur 5`}>
       {[...Array(5)].map((_, i) => (
-        <Star key={i} size={14} className={i < n ? 'fill-green text-green' : 'fill-line text-line'} />
+        <Star key={i} size={size} className={i < n ? 'fill-amber-400 text-amber-400' : 'fill-line text-line'} />
       ))}
     </div>
   )
@@ -16,7 +20,6 @@ function Stars({ n }: { n: number }) {
 export default function Testimonials() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const ease = [0.22, 1, 0.36, 1] as const
 
   const featured = REVIEWS.find((r) => r.highlight) ?? REVIEWS[0]
   const rest = REVIEWS.filter((r) => r !== featured)
@@ -25,58 +28,68 @@ export default function Testimonials() {
     <section id="avis" ref={ref} className="py-16 sm:py-24 md:py-32 px-5 md:px-10 bg-canvas-2/50 border-y border-line">
       <div className="max-w-container mx-auto">
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16"
-        >
-          <div className="max-w-xl">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-green mb-5">Les avis</p>
-            <h2 className="font-display text-[clamp(2.2rem,5vw,3.6rem)] font-400 tracking-tight text-ink leading-[1.05]">
-              Ils le portent <span className="italic-display text-gradient-green-static">depuis des années</span>.
-            </h2>
-          </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <Stars n={5} />
-            <span className="font-display text-2xl font-500 text-gradient-green-static tabular">5,0</span>
-            <span className="font-mono text-[11px] uppercase tracking-wide text-muted">avis Google</span>
-          </div>
-        </motion.div>
+        <SectionHeader
+          className="mb-6 md:mb-7"
+          kicker="Les avis"
+          title={<>Ils en parlent <span className="italic-display text-gradient-green-static">mieux que nous</span>.</>}
+          lead="Vous avez vu les pièces. Voilà ce que disent ceux qui les portent."
+        />
 
-        {/* Citation mise en avant */}
+        {/* Note Google — prominente */}
+        <motion.a
+          href={SOCIAL.reviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 14 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15, ease }}
+          className="group mx-auto mb-14 md:mb-20 flex w-fit items-center gap-3.5 rounded-full border border-line bg-white pl-5 pr-4 py-2.5 shadow-card hover:shadow-luxe transition-shadow"
+          aria-label={`${SOCIAL.rating} sur 5 sur Google, ${SOCIAL.reviewCount} avis`}
+        >
+          <Stars n={5} size={17} />
+          <span className="h-5 w-px bg-line" aria-hidden="true" />
+          <span className="flex items-center gap-2">
+            <GoogleG size={17} />
+            <span className="font-display text-lg font-600 text-ink tabular leading-none">{SOCIAL.rating}</span>
+            <span className="font-sans text-sm text-soft">· {SOCIAL.reviewCount} avis</span>
+          </span>
+          <ArrowUpRight size={15} aria-hidden="true" className="text-muted group-hover:text-green transition-colors" />
+        </motion.a>
+
+        {/* Avis mis en avant */}
         <motion.figure
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1, ease }}
-          className="border-t border-line pt-10 mb-12"
+          transition={{ duration: 0.7, delay: 0.2, ease }}
+          className="text-center max-w-4xl mx-auto mb-14 md:mb-16"
         >
-          <blockquote className="font-display text-[clamp(1.5rem,3.4vw,2.4rem)] font-400 text-ink leading-[1.3] tracking-tight max-w-4xl text-balance">
+          <blockquote className="font-display text-[clamp(1.6rem,3.6vw,2.5rem)] font-400 text-ink leading-[1.3] tracking-tight text-balance">
             <span className="text-gradient-green-static">«&nbsp;</span>
             {featured.text}
             <span className="text-gradient-green-static">&nbsp;»</span>
           </blockquote>
-          <figcaption className="flex items-center gap-3 mt-7">
+          <figcaption className="flex items-center justify-center gap-3 mt-7">
             <Stars n={featured.rating} />
             <span className="font-sans text-sm font-600 text-ink">{featured.name}</span>
             <span className="font-mono text-[11px] text-muted">{featured.date}</span>
           </figcaption>
         </motion.figure>
 
-        {/* Autres avis */}
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 border-t border-line pt-10">
+        {/* Autres avis — en cartes, centrés */}
+        <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
           {rest.map((review, i) => (
             <motion.figure
               key={review.name}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.25 + i * 0.1, ease }}
+              transition={{ duration: 0.6, delay: 0.3 + i * 0.1, ease }}
+              className="flex flex-col items-center text-center rounded-2xl bg-white border border-line shadow-luxe p-7 md:p-8"
             >
               <Stars n={review.rating} />
-              <blockquote className="font-sans text-[15px] text-soft leading-relaxed my-4 max-w-md text-pretty">
+              <blockquote className="font-sans text-base md:text-[17px] text-ink/80 leading-relaxed my-5 text-pretty">
                 {review.text}
               </blockquote>
-              <figcaption className="flex items-center gap-3">
+              <figcaption className="flex items-center gap-2.5 mt-auto">
                 <span className="font-sans text-sm font-600 text-ink">{review.name}</span>
                 <span className="font-mono text-[11px] text-muted">{review.date}</span>
               </figcaption>
@@ -88,16 +101,16 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.45, ease }}
-          className="mt-12"
+          className="mt-12 text-center"
         >
           <a
-            href={HOUSE.mapsUrl}
+            href={SOCIAL.reviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-1.5 font-sans text-sm font-600 text-ink border-b border-green pb-1 hover:gap-2.5 transition-all duration-200"
+            className="group inline-flex items-center gap-1.5 font-sans text-sm font-600 text-ink border-b border-green pb-1 hover:gap-2.5 transition-[gap] duration-200"
           >
             Voir tous les avis sur Google
-            <ArrowUpRight size={15} className="text-green" />
+            <ArrowUpRight size={15} aria-hidden="true" className="text-green" />
           </a>
         </motion.div>
       </div>

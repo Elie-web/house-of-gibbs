@@ -5,10 +5,10 @@ import { useBooking } from '../booking'
 import { HOUSE } from '../config'
 
 const NAV_LINKS = [
-  { label: 'Le collectif', href: '#collectif' },
   { label: 'Les artistes', href: '#artistes' },
   { label: 'Galerie',      href: '#galerie' },
-  { label: 'Le studio',    href: '#studio' },
+  { label: 'Avis',         href: '#avis' },
+  { label: 'Contact',      href: '#studio' },
 ]
 
 export default function Navbar() {
@@ -64,7 +64,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative font-sans text-[13.5px] font-500 transition-colors duration-200 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-green after:transition-all after:duration-300 hover:after:w-full ${
+                className={`relative font-sans text-[13.5px] font-500 transition-colors duration-200 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-green after:transition-[width] after:duration-300 hover:after:w-full ${
                   scrolled ? 'text-soft hover:text-ink' : 'text-white/80 hover:text-white'
                 }`}
               >
@@ -150,7 +150,7 @@ export default function Navbar() {
                     </span>
                     <ArrowUpRight
                       size={18}
-                      className="text-muted transition-all duration-200 group-hover:text-green group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      className="text-muted transition-[transform,color] duration-200 group-hover:text-green group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     />
                   </motion.a>
                 ))}

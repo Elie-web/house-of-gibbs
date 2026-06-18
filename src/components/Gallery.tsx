@@ -1,8 +1,9 @@
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useRef, useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useMemo } from 'react'
 import { X, ChevronLeft, ChevronRight, Play, Plus } from 'lucide-react'
 import { ARTISTS, type GalleryItem } from '../config'
 import { InstagramIcon } from './icons'
+import SectionHeader from './SectionHeader'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -61,8 +62,6 @@ function Lightbox({ photos, initial, onClose }: { photos: Tile[]; initial: numbe
 }
 
 export default function Gallery() {
-  const titleRef = useRef(null)
-  const titleInView = useInView(titleRef, { once: true, margin: '-60px' })
   const [filter, setFilter] = useState<string>('all')
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
@@ -73,47 +72,62 @@ export default function Gallery() {
   // Lightbox ne navigue que sur les images (les vidéos ouvrent Instagram)
   const images = useMemo(() => tiles.filter((t) => t.type === 'image'), [tiles])
 
-  const TABS = [{ id: 'all', name: 'Tous' }, ...ARTISTS.map((a) => ({ id: a.id, name: a.name }))]
+  const TABS = [
+    { id: 'all', name: 'Tous', accent: '#2B312E', count: ALL_TILES.length },
+    ...ARTISTS.map((a) => ({
+      id: a.id,
+      name: a.name,
+      accent: a.accent,
+      count: a.gallery.length,
+    })),
+  ]
 
   return (
     <section id="galerie" className="py-16 sm:py-24 md:py-32 px-5 md:px-10 bg-canvas-2/50 border-y border-line">
       <div className="max-w-container mx-auto">
 
-        <motion.div
-          ref={titleRef}
-          initial={{ opacity: 0, y: 24 }}
-          animate={titleInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease }}
-          className="mb-10 md:mb-12 max-w-2xl"
-        >
-          <p className="font-mono text-[11px] uppercase tracking-widest text-green mb-5">La galerie</p>
-          <h2 className="font-display text-[clamp(2.2rem,5vw,3.6rem)] font-400 tracking-tight text-ink leading-[1.05] mb-4">
-            Le travail <span className="italic-display text-gradient-green-static">parle</span> de lui-même.
-          </h2>
-          <p className="font-sans text-[15px] md:text-base text-soft leading-relaxed">
-            Photos et reels Instagram, filtrés par artiste. Cliquez pour agrandir une pièce
-            ou voir la vidéo.
-          </p>
-        </motion.div>
+        <SectionHeader
+          className="mb-10 md:mb-12"
+          kicker="La galerie"
+          title={<>Un coup d'œil avant <span className="italic-display text-gradient-green-static">de vous décider</span>.</>}
+          lead="Leurs pièces, directement. Photos et reels filtrés par artiste."
+        />
 
         {/* Filtres par artiste */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {TABS.map((t) => {
-            const active = filter === t.id
-            return (
-              <button
-                key={t.id}
-                onClick={() => { setFilter(t.id); setLightboxIndex(null) }}
-                className={`px-4 py-2 rounded-full text-sm font-600 border transition-colors ${
-                  active
-                    ? 'bg-ink text-canvas border-ink'
-                    : 'bg-white text-soft border-line hover:border-ink hover:text-ink'
-                }`}
-              >
-                {t.name}
-              </button>
-            )
-          })}
+        <div className="mb-8 md:mb-10">
+          <p className="text-center font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-4">
+            Voir le travail de
+          </p>
+          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
+            {TABS.map((t) => {
+              const active = filter === t.id
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => { setFilter(t.id); setLightboxIndex(null) }}
+                  aria-pressed={active}
+                  className={`group relative flex items-center gap-2.5 pl-3.5 pr-2.5 py-2.5 rounded-full text-[15px] font-600 border transition-all duration-300 ${
+                    active
+                      ? 'bg-ink text-canvas border-ink shadow-lg shadow-ink/20 scale-[1.04]'
+                      : 'bg-white text-ink border-line hover:border-ink/60 hover:-translate-y-0.5 hover:shadow-md hover:shadow-ink/5'
+                  }`}
+                >
+                  <span
+                    className={`w-2.5 h-2.5 rounded-full shrink-0 transition-transform duration-300 ${active ? 'scale-110' : 'group-hover:scale-110'}`}
+                    style={{ background: t.accent, boxShadow: active ? `0 0 0 3px rgba(247,248,245,0.18)` : 'none' }}
+                  />
+                  {t.name}
+                  <span
+                    className={`min-w-[24px] text-center text-xs font-mono tabular px-1.5 py-0.5 rounded-full transition-colors ${
+                      active ? 'bg-canvas/15 text-canvas' : 'bg-canvas-2 text-muted group-hover:bg-line/60'
+                    }`}
+                  >
+                    {t.count}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         {/* Grille */}
@@ -137,7 +151,7 @@ export default function Gallery() {
 
                   {/* Badge type */}
                   <span
-                    className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110"
+                    className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110"
                     style={{ background: isVideo ? tile.accent : 'rgba(247,248,245,0.92)' }}
                   >
                     {isVideo
@@ -146,7 +160,7 @@ export default function Gallery() {
                   </span>
 
                   {/* Légende */}
-                  <span className="absolute left-4 right-4 bottom-4 flex items-center gap-2 text-left translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <span className="absolute left-4 right-4 bottom-4 flex items-center gap-2 text-left translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-[transform,opacity] duration-300">
                     <span className="h-px w-5 shrink-0" style={{ background: tile.accent }} />
                     <span className="font-mono text-[10.5px] uppercase tracking-wide text-canvas leading-tight">
                       {isVideo ? 'Reel · ' : ''}{tile.artistName}

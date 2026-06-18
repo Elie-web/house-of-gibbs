@@ -16,10 +16,41 @@
   padding: 0;
 }
 
+html {
+  color-scheme: light;
+}
+
 body {
   background-color: #F7F8F5;
   color: #15201B;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+/* Lien d'évitement clavier — visible uniquement au focus */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  transform: translateY(-150%);
+  background: #15201B;
+  color: #F7F8F5;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 #root {
@@ -131,15 +162,18 @@ html {
   .tabular {
     font-variant-numeric: tabular-nums;
   }
-  /* Hero plein écran — voile dégradé pour la lisibilité du texte */
+  /* Hero plein écran — voile allégé : plus lumineux, juste assez pour la lisibilité.
+     Voile vertical doux + léger renfort radial centré derrière le texte. */
   .hero-overlay {
-    background: linear-gradient(
-      to bottom,
-      hsla(160 25% 4% / 0.55) 0%,
-      hsla(160 25% 4% / 0.25) 38%,
-      hsla(160 25% 4% / 0.40) 68%,
-      hsla(160 30% 5% / 0.78) 100%
-    );
+    background:
+      radial-gradient(120% 90% at 50% 62%, hsla(160 30% 5% / 0.42) 0%, transparent 60%),
+      linear-gradient(
+        to bottom,
+        hsla(160 25% 6% / 0.34) 0%,
+        hsla(160 25% 6% / 0.12) 34%,
+        hsla(160 25% 6% / 0.20) 64%,
+        hsla(160 30% 6% / 0.58) 100%
+      );
   }
   .text-shadow-hero {
     text-shadow: 0 2px 24px hsla(160, 30%, 4%, 0.6), 0 1px 6px hsla(160, 30%, 4%, 0.4);

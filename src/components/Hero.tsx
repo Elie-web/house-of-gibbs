@@ -1,8 +1,12 @@
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
-import { ArrowRight, ChevronDown, Mountain } from 'lucide-react'
-import { HOUSE } from '../config'
+import { ArrowRight, ChevronDown, Mountain, Star, Phone } from 'lucide-react'
+import { HOUSE, SOCIAL, REASSURANCE } from '../config'
 import { useBooking } from '../booking'
+import Magnetic from './Magnetic'
+import { GoogleG } from './icons'
+
+const TRUST = REASSURANCE.filter((r) => r.icon !== 'star').map((r) => r.title)
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -21,7 +25,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="relative h-[100svh] w-full overflow-hidden flex items-center justify-center"
+      className="relative min-h-[100svh] w-full overflow-hidden flex items-center justify-center py-28 sm:py-0"
     >
       {/* Photo de fond + parallax */}
       <motion.div
@@ -44,7 +48,7 @@ export default function Hero() {
       {/* Contenu centré */}
       <motion.div
         style={reduce ? undefined : { opacity: fade, y: contentY }}
-        className="relative z-10 flex flex-col items-center text-center px-5 sm:px-6 max-w-3xl mx-auto"
+        className="relative z-10 flex flex-col items-center text-center px-5 sm:px-6 max-w-4xl mx-auto"
       >
         {/* Eyebrow */}
         <motion.div
@@ -64,10 +68,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.35, ease }}
-          className="font-display font-400 text-white tracking-[-0.015em] leading-[1.06] text-[clamp(2.1rem,7vw,5.4rem)] text-shadow-hero text-balance"
+          className="font-display font-400 text-white tracking-[-0.015em] leading-[1.04] text-[clamp(1.85rem,7vw,5rem)] text-shadow-hero"
         >
-          Exceptional tattoos,<br />
-          <span className="italic-display text-green-3">timeless memories.</span>
+          <span className="block whitespace-nowrap">Exceptional tattoos,</span>
+          <span className="block whitespace-nowrap italic-display text-green-3">timeless memories.</span>
         </motion.h1>
 
         {/* Description */}
@@ -77,8 +81,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6, ease }}
           className="mt-5 sm:mt-7 max-w-xl font-sans text-[15px] sm:text-[17px] leading-relaxed font-400 text-white/85 text-shadow-sub text-pretty"
         >
-          {HOUSE.intro} Marc au réalisme, Isabelle au fine line, Indi au graphique.
-          Ils tatouent en hauteur à {HOUSE.city} des pièces pensées pour traverser les décennies.
+          Vous avez une idée en tête. On la transforme en quelque chose que vous allez porter toute votre vie, et qui tiendra. Réalisme, fine line ou graphique : on trouve ensemble l'artiste qui correspond à votre projet. Studio privé à {HOUSE.city}, sur rendez-vous.
         </motion.p>
 
         {/* CTAs */}
@@ -88,18 +91,65 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.82, ease }}
           className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
         >
-          <button
-            onClick={() => openBooking()}
-            className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-ink text-sm font-600 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] hover:bg-green hover:text-white transition-colors duration-300 active:scale-[0.98]"
-          >
-            Prendre rendez-vous
-            <ArrowRight size={16} strokeWidth={2.25} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-          </button>
+          <Magnetic strength={0.4} className="w-full sm:w-auto">
+            <button
+              onClick={() => openBooking()}
+              className="group w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-ink text-sm font-600 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] hover:bg-green hover:text-white transition-colors duration-300 active:scale-[0.98]"
+            >
+              Prendre rendez-vous
+              <ArrowRight size={16} strokeWidth={2.25} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+            </button>
+          </Magnetic>
           <a
-            href="#artistes"
+            href="#galerie"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-600 text-white rounded-full border border-white/35 bg-white/5 backdrop-blur-md hover:bg-white/15 transition-colors duration-300"
           >
-            Voir les artistes
+            Voir la galerie
+          </a>
+        </motion.div>
+
+        {/* Preuve sociale */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.0, ease }}
+          className="mt-8 flex flex-col items-center gap-4"
+        >
+          <a
+            href={SOCIAL.reviewsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-md pl-4 pr-3.5 py-2 hover:bg-white/15 transition-colors"
+            aria-label={`${SOCIAL.rating} sur 5 sur Google, ${SOCIAL.reviewCount} avis`}
+          >
+            <span className="flex gap-0.5" aria-hidden="true">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <Star key={i} size={15} className="fill-amber-400 text-amber-400" />
+              ))}
+            </span>
+            <span className="h-4 w-px bg-white/25" aria-hidden="true" />
+            <span className="flex items-center gap-1.5">
+              <GoogleG size={15} />
+              <span className="font-700 text-sm text-white">{SOCIAL.rating}</span>
+              <span className="text-[13px] text-white/65">· {SOCIAL.reviewCount} avis</span>
+            </span>
+          </a>
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5">
+            {TRUST.map((t, i) => (
+              <li key={t} className="flex items-center">
+                {i > 0 && <span className="mr-4 h-1 w-1 rounded-full bg-white/30" aria-hidden="true" />}
+                <span className="font-sans text-[12.5px] font-500 text-white/70 text-shadow-sub">{t}</span>
+              </li>
+            ))}
+          </ul>
+          {/* Téléphone — visible immédiatement pour les visiteurs Maps */}
+          <a
+            href={`tel:${HOUSE.phoneRaw}`}
+            className="inline-flex items-center gap-2 font-mono text-[12.5px] text-white/55 hover:text-white/90 transition-colors duration-200"
+            aria-label={`Appeler le ${HOUSE.phone}`}
+          >
+            <Phone size={13} strokeWidth={2} />
+            {HOUSE.phone}
           </a>
         </motion.div>
       </motion.div>
@@ -111,7 +161,7 @@ export default function Hero() {
         transition={{ delay: 1.4, duration: 1 }}
         onClick={() => window.scrollBy({ top: window.innerHeight - 80, behavior: 'smooth' })}
         aria-label="Défiler vers le bas"
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 text-white/55 hover:text-white transition-colors duration-300"
+        className="hidden sm:block absolute bottom-7 left-1/2 -translate-x-1/2 z-10 text-white/55 hover:text-white transition-colors duration-300"
       >
         <motion.span
           animate={{ y: [0, 6, 0] }}

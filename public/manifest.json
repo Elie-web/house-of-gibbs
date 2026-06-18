@@ -1,0 +1,18 @@
+{
+  "name": "House of Gibbs — Tatoueurs",
+  "short_name": "House of Gibbs",
+  "description": "Collectif familial de tatoueurs à Saint-Baldoph, Savoie. Studio privé, vue Belledonne. Sur rendez-vous.",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#16745A",
+  "background_color": "#F7F8F5",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
