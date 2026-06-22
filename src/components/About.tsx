@@ -42,7 +42,7 @@ export default function About() {
         <SectionHeader
           kicker="Le studio"
           title={<>Un endroit où votre projet <span className="italic-display text-gradient-green-static">prend toute la place</span>.</>}
-          lead="Pas de passage. Pas de bruit. Quand vous montez ici, c'est pour vous."
+          lead="Pas de passage, pas de bruit. Quand vous montez ici, le studio est à vous."
         />
 
         {/* Prose + détails pratiques */}
@@ -58,7 +58,7 @@ export default function About() {
               Sur rendez-vous uniquement. Ici, c'est votre projet qui compte.
             </p>
             <p className="font-sans text-[16px] md:text-[17px] text-ink/70 leading-relaxed text-pretty mb-8">
-              Pas de file d'attente, pas d'artiste pressé. Marc, Isabelle et Indi prennent le temps : comprendre votre idée, la dessiner, bien faire les choses. La vue sur Belledonne, c'est le bonus.
+              Pas de file d'attente, pas d'artiste pressé. Marc, Isabelle et Indi prennent le temps : écouter votre idée, la dessiner, faire les choses comme il faut. La vue sur Belledonne, elle, vient en prime.
             </p>
             <button
               onClick={() => openBooking()}

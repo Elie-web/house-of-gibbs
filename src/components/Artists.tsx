@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { ArrowRight, Images, MapPin } from 'lucide-react'
+import { ArrowRight, Images, MapPin, ImageIcon } from 'lucide-react'
 import { ARTISTS } from '../config'
 import { InstagramIcon, FacebookIcon } from './icons'
 import { useBooking } from '../booking'
@@ -38,12 +38,19 @@ export default function Artists() {
             >
               {/* Portrait */}
               <figure className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-canvas-2 w-full md:max-w-[260px] mx-auto">
-                <img
-                  src={a.portrait}
-                  alt={`${a.name}, alias ${a.handle}`}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
-                />
+                {a.portrait ? (
+                  <img
+                    src={a.portrait}
+                    alt={`${a.name}, alias ${a.handle}`}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-muted">
+                    <ImageIcon size={26} strokeWidth={1.5} style={{ color: a.accent }} />
+                    <span className="font-mono text-[10px] uppercase tracking-widest">Photo à venir</span>
+                  </div>
+                )}
                 <span
                   className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest text-white"
                   style={{ background: 'var(--accent)' }}
@@ -55,7 +62,7 @@ export default function Artists() {
               {/* Texte */}
               <div className="flex flex-col items-center text-center md:items-start md:text-left">
                 <div className="flex items-baseline justify-center md:justify-start gap-3 flex-wrap mb-1">
-                  <h3 className="font-display text-4xl md:text-5xl font-500 text-ink leading-none">{a.name}</h3>
+                  <h3 className="font-display text-3xl md:text-4xl font-500 text-ink leading-none">{a.name}</h3>
                   <span
                     className="font-mono text-xs uppercase tracking-widest"
                     style={{ color: 'var(--accent)' }}

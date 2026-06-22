@@ -32,7 +32,7 @@ export default function Testimonials() {
           className="mb-6 md:mb-7"
           kicker="Les avis"
           title={<>Ils en parlent <span className="italic-display text-gradient-green-static">mieux que nous</span>.</>}
-          lead="Vous avez vu les pièces. Voilà ce que disent ceux qui les portent."
+          lead="Vous avez vu les pièces. Voici les mots de celles et ceux qui les portent."
         />
 
         {/* Note Google — prominente */}

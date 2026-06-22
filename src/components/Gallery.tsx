@@ -1,17 +1,17 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useMemo } from 'react'
-import { X, ChevronLeft, ChevronRight, Play, Plus } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Play, Plus, ImageIcon } from 'lucide-react'
 import { ARTISTS, type GalleryItem } from '../config'
 import { InstagramIcon } from './icons'
 import SectionHeader from './SectionHeader'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-type Tile = GalleryItem & { artistId: string; artistName: string; handle: string; accent: string }
+type Tile = GalleryItem & { uid: string; artistId: string; artistName: string; handle: string; accent: string }
 
 // Aplati toutes les galeries en y attachant l'artiste (pour le filtre + l'accent)
 const ALL_TILES: Tile[] = ARTISTS.flatMap((a) =>
-  a.gallery.map((g) => ({ ...g, artistId: a.id, artistName: a.name, handle: a.handle, accent: a.accent })),
+  a.gallery.map((g, gi) => ({ ...g, uid: `${a.id}-${gi}`, artistId: a.id, artistName: a.name, handle: a.handle, accent: a.accent })),
 )
 
 function Lightbox({ photos, initial, onClose }: { photos: Tile[]; initial: number; onClose: () => void }) {
@@ -69,8 +69,8 @@ export default function Gallery() {
     () => (filter === 'all' ? ALL_TILES : ALL_TILES.filter((t) => t.artistId === filter)),
     [filter],
   )
-  // Lightbox ne navigue que sur les images (les vidéos ouvrent Instagram)
-  const images = useMemo(() => tiles.filter((t) => t.type === 'image'), [tiles])
+  // Lightbox ne navigue que sur les images réelles (pas les placeholders, pas les vidéos)
+  const images = useMemo(() => tiles.filter((t) => t.type === 'image' && t.src), [tiles])
 
   const TABS = [
     { id: 'all', name: 'Tous', accent: '#2B312E', count: ALL_TILES.length },
@@ -90,7 +90,7 @@ export default function Gallery() {
           className="mb-10 md:mb-12"
           kicker="La galerie"
           title={<>Un coup d'œil avant <span className="italic-display text-gradient-green-static">de vous décider</span>.</>}
-          lead="Leurs pièces, directement. Photos et reels filtrés par artiste."
+          lead="Leur travail, pièce par pièce. Photos et reels, classés par artiste."
         />
 
         {/* Filtres par artiste */}
@@ -138,6 +138,27 @@ export default function Gallery() {
               const big = i % 5 === 0 // rythme éditorial
               const commonClass = `group relative overflow-hidden rounded-2xl bg-canvas-2 cursor-pointer aspect-square md:aspect-auto ${big ? 'md:row-span-2' : ''}`
 
+              // Placeholder : photo pas encore fournie
+              if (!tile.src) {
+                return (
+                  <motion.div
+                    key={tile.uid}
+                    layout
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.4, ease }}
+                    className={`relative overflow-hidden rounded-2xl bg-canvas-2 aspect-square md:aspect-auto flex flex-col items-center justify-center gap-2 text-muted ${big ? 'md:row-span-2' : ''}`}
+                  >
+                    <div className="absolute inset-0 ring-1 ring-inset ring-ink/5 rounded-2xl pointer-events-none" />
+                    <ImageIcon size={24} strokeWidth={1.5} style={{ color: tile.accent }} />
+                    <span className="font-mono text-[10px] uppercase tracking-widest">
+                      {isVideo ? 'Reel à venir' : 'Photo à venir'}
+                    </span>
+                  </motion.div>
+                )
+              }
+
               const inner = (
                 <>
                   <img
@@ -171,7 +192,7 @@ export default function Gallery() {
 
               return isVideo ? (
                 <motion.a
-                  key={tile.src}
+                  key={tile.uid}
                   layout
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -190,7 +211,7 @@ export default function Gallery() {
                 </motion.a>
               ) : (
                 <motion.button
-                  key={tile.src}
+                  key={tile.uid}
                   layout
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}

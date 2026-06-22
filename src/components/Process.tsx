@@ -19,22 +19,24 @@ export default function Process() {
           className="mb-14 md:mb-24"
           kicker="Le déroulé"
           title={<>Comment ça se passe, <span className="italic-display text-gradient-green-static">concrètement</span>.</>}
-          lead="Une pièce vous parle ? Voici les trois étapes, sans précipitation."
+          lead="Une pièce vous parle ? Voici comment on avance, en trois temps, sans jamais précipiter les choses."
         />
 
-        {/* Étapes : texte à gauche, mockup à droite */}
+        {/* Étapes : texte et mockup alternent gauche / droite d'une étape à l'autre */}
         <div className="space-y-24 md:space-y-36">
-          {PROCESS.map((step, i) => (
+          {PROCESS.map((step, i) => {
+            const flip = i % 2 === 1 // une ligne sur deux : on inverse les colonnes
+            return (
             <div
               key={step.step}
               className="grid md:grid-cols-2 gap-12 md:gap-20 items-center"
             >
-              {/* Texte scannable — centré dans la colonne gauche */}
+              {/* Texte scannable — alterne de colonne, hugge la gouttière centrale */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.1 + i * 0.05, ease }}
-                className="flex justify-center"
+                className={`flex justify-center ${flip ? 'md:order-2 md:justify-start' : 'md:order-1 md:justify-end'}`}
               >
                 <div className="relative text-left max-w-sm w-full">
                   <span
@@ -44,7 +46,7 @@ export default function Process() {
                     {step.step}
                   </span>
                   <span className="block font-mono text-xs uppercase tracking-[0.25em] text-gradient-green-static mb-3">Étape {step.step}</span>
-                  <h3 className="font-display text-4xl md:text-5xl font-500 text-ink mb-4 leading-[1.05] tracking-tight">{step.title}</h3>
+                  <h3 className="font-display text-3xl md:text-4xl font-500 text-ink mb-4 leading-[1.05] tracking-tight">{step.title}</h3>
                   <p className="font-display text-lg md:text-xl font-400 italic-display text-soft mb-8 text-balance">
                     {step.tagline}
                   </p>
@@ -61,17 +63,18 @@ export default function Process() {
                 </div>
               </motion.div>
 
-              {/* Visuel (mockup) — toujours à droite */}
+              {/* Visuel (mockup) — alterne en miroir du texte */}
               <motion.div
                 initial={{ opacity: 0, y: 36 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 + i * 0.05, ease }}
-                className="flex justify-center"
+                className={`flex justify-center ${flip ? 'md:order-1 md:justify-end' : 'md:order-2 md:justify-start'}`}
               >
                 <ProcessMockup id={step.id} />
               </motion.div>
             </div>
-          ))}
+            )
+          })}
         </div>
 
         <motion.div
