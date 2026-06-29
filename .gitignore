@@ -2,3 +2,7 @@ node_modules
 dist
 .DS_Store
 *.local
+
+# Médias bruts envoyés par le client (originaux lourds : .mov/.heic/.jpg).
+# On garde les versions optimisées (.webp / .mp4) générées dans src/assets et public/.
+src/assets/Site web house of gibs/

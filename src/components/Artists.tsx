@@ -22,7 +22,7 @@ export default function Artists() {
         <SectionHeader
           kicker="Les artistes"
           title={<>Père, mère, fils. <span className="italic-display text-gradient-green-static">Choisissez la main qui vous parle.</span></>}
-          lead="Marc au réalisme, Isabelle au fine line, Indi au graphique. Chacun son style, une seule maison."
+          lead="Mark au réalisme, Zazz au fine line, Indy au graphique. Chacun son style, une seule maison."
         />
 
         {/* Cartes artistes */}

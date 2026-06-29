@@ -1,19 +1,24 @@
 ﻿// ================================================================
 // CONFIGURATION HOUSE OF GIBBS — Personnalisez uniquement ce fichier
 // ----------------------------------------------------------------
-// Collectif familial de tatoueurs : Marc (le père), Isabelle (la mère),
-// Indi (le fils). Studio privé en hauteur à Saint-Baldoph, vue Belledonne.
+// Collectif familial de tatoueurs : Mark (le père), Zazz (la mère),
+// Indy (le fils). Studio privé en hauteur à Saint-Baldoph, vue Belledonne.
 // ================================================================
 
 import {
-  poitrine,
   heroLandscape,
-  brasGauche,
-  avantBras2,
-  forearm,
-  triceps,
-  epaule,
   markSelfie,
+  markMountainSleeve,
+  markChestSamurai,
+  markForearmPortrait,
+  markBackRam,
+  indyPortrait,
+  indySpider,
+  indyWomanWolf,
+  indyRamSkull,
+  indyAngel,
+  indyTribalSleeve,
+  indyDoberman,
 } from './assets'
 
 // --- Le studio / la maison ---------------------------------------
@@ -21,7 +26,7 @@ export const HOUSE = {
   name:       'House of Gibbs',
   shortName:  'Gibbs',
   tagline:    'Exceptional tattoos, timeless memories',
-  intro:      'Un collectif familial de tatoueurs. Trois mains, un seul studio.',
+  intro:      'Un collectif familial de tatoueurs basé en Savoie. Trois mains, un seul studio.',
 
   city:       'Saint-Baldoph',
   department: 'Savoie',
@@ -54,12 +59,15 @@ export const HOUSE = {
 // --- Les artistes -------------------------------------------------
 // accent : couleur signature de l'artiste (cohérence "maison verte",
 //          chacun sa nuance). Marc = graphite (clin d'œil à BlackScab).
-// gallery : { type: 'image' | 'video', src, alt, href? }
-//           - 'video' = reel Instagram : `src` = vignette, `href` = lien du reel.
+// gallery : { type: 'image' | 'video', src, alt, video?, href? }
+//           - 'image' : `src` = photo plein écran (ouvre la lightbox).
+//           - 'video' : `src` = vignette (poster), `video` = fichier .mp4 local
+//                       (lecture sur place), `href` = lien Instagram optionnel.
 export type GalleryItem = {
   type: 'image' | 'video'
   src: string
   alt: string
+  video?: string
   href?: string
 }
 
@@ -81,61 +89,61 @@ export type Artist = {
 export const ARTISTS: Artist[] = [
   {
     id:        'marc',
-    name:      'Marc',
+    name:      'Mark',
     handle:    'BlackScab',
     role:      'Le père',
-    specialty: 'Réalisme · noir & gris',
+    specialty: 'Réalisme · noir & gris · couleur',
     accent:    '#2B312E', // graphite
-    bio:       "Le réalisme noir & gris est son langage : la finesse des détails, la profondeur des dégradés, la justesse du trait. Trente ans à n'explorer que cela. Marc dessine des pièces pensées pour durer — de celles qui gardent toute leur netteté au fil des années et vieillissent avec vous.",
+    bio:       "Le réalisme est son langage : la finesse des détails, la profondeur des dégradés, la justesse du trait. Près de trente ans à n'explorer que cela, du noir & gris à la grande pièce couleur. Mark dessine des tatouages pensés pour durer — de ceux qui gardent toute leur netteté au fil des années et vieillissent avec vous.",
     portrait:  markSelfie,
     instagram: 'https://www.instagram.com/markblackscab/?hl=fr',
     facebook:  'https://www.facebook.com/p/Blackscab-Tattoos-Chambéry-73-100063680827033/?locale=fr_FR',
     maps:      'https://www.google.com/search?kgmid=/g/11k9s678z0&hl=fr-FR&q=Blackscab%20Tattoos',
     gallery: [
-      { type: 'image', src: poitrine,   alt: 'Tatouage pleine poitrine, réalisme noir & gris' },
-      { type: 'video', src: forearm,    alt: 'Reel · avant-bras en cours', href: 'https://www.instagram.com/markblackscab/' },
-      { type: 'image', src: brasGauche, alt: 'Tatouage bras gauche, noir & gris' },
-      { type: 'image', src: avantBras2, alt: 'Avant-bras, détail réaliste' },
-      { type: 'image', src: triceps,    alt: 'Tatouage triceps' },
-      { type: 'image', src: epaule,     alt: 'Tatouage épaule' },
+      { type: 'video', src: '/videos/mark-tiger.webp',        video: '/videos/mark-tiger.mp4',        alt: 'Reel · grande pièce de dos, tigre réaliste', href: 'https://www.instagram.com/markblackscab/' },
+      { type: 'image', src: markMountainSleeve,  alt: 'Manchette réaliste : forêt et montagnes au coucher du soleil' },
+      { type: 'image', src: markChestSamurai,    alt: 'Pièce pleine poitrine, composition couleur et graphique' },
+      { type: 'video', src: '/videos/mark-color-sleeve.webp', video: '/videos/mark-color-sleeve.mp4', alt: 'Reel · manchette couleur, portrait et plumes', href: 'https://www.instagram.com/markblackscab/' },
+      { type: 'image', src: markBackRam,         alt: 'Grande pièce de dos, bélier et flammes en couleur' },
+      { type: 'image', src: markForearmPortrait, alt: 'Avant-bras réaliste, portrait et motif géométrique' },
     ],
   },
   {
     id:        'isabelle',
-    name:      'Isabelle',
-    handle:    'Zaztaz',
+    name:      'Zazz',
+    handle:    'Zazz',
     role:      'La mère',
     specialty: 'Fine line · floral · couleur douce',
     accent:    '#16745A', // émeraude (couleur maison)
-    bio:       "Isabelle écoute longuement avant de dessiner — et cela se ressent dans chaque trait. Vous repartez avec ce que vous aviez imaginé, parfois plus juste encore. Fine line, compositions florales, couleurs douces : tout ce qui demande délicatesse et précision est son domaine.",
-    portrait:  '', // placeholder en attente de la photo
+    bio:       "Zazz écoute longuement avant de dessiner — et cela se ressent dans chaque trait. Vous repartez avec ce que vous aviez imaginé, parfois plus juste encore. Fine line, compositions florales, couleurs douces : tout ce qui demande délicatesse et précision est son domaine.",
+    portrait:  '', // placeholder — photos à venir
     instagram: 'https://www.instagram.com/',
     gallery: [
       { type: 'image', src: '', alt: 'Composition florale fine line' },
-      { type: 'video', src: '', alt: 'Reel · fine line en cours', href: 'https://www.instagram.com/' },
       { type: 'image', src: '', alt: 'Tatouage couleur douce' },
       { type: 'image', src: '', alt: 'Détail floral délicat' },
       { type: 'image', src: '', alt: 'Fine line botanique' },
-      { type: 'image', src: '', alt: 'Tatouage avant-bras couleur' },
     ],
   },
   {
     id:        'indi',
-    name:      'Indi',
-    handle:    'IndiTaz',
+    name:      'Indy',
+    handle:    'in_dtatts',
     role:      'Le fils',
-    specialty: 'Graphique · blackwork · contemporain',
+    specialty: 'Réalisme · blackwork · graphique',
     accent:    '#11998E', // vert-teal frais
-    bio:       "Indi est l'œil graphique de la maison : un blackwork affirmé, des formes contemporaines, des compositions qui ont du caractère. Il ne reproduit jamais un motif — il imagine une pièce qui n'existera qu'en un seul exemplaire, sur votre peau.",
-    portrait:  '', // placeholder en attente de la photo
-    instagram: 'https://www.instagram.com/',
+    bio:       "Indy est l'œil graphique de la maison : un blackwork affirmé, un réalisme net et des compositions qui ont du caractère. Il ne reproduit jamais un motif — il imagine une pièce qui n'existera qu'en un seul exemplaire, sur votre peau.",
+    portrait:  indyPortrait,
+    instagram: 'https://www.instagram.com/in_dtatts/',
     gallery: [
-      { type: 'image', src: '', alt: 'Tatouage graphique blackwork' },
-      { type: 'image', src: '', alt: 'Blackwork contemporain' },
-      { type: 'video', src: '', alt: 'Reel · pièce graphique', href: 'https://www.instagram.com/' },
-      { type: 'image', src: '', alt: 'Formes contemporaines' },
-      { type: 'image', src: '', alt: 'Tatouage bras graphique' },
-      { type: 'image', src: '', alt: 'Blackwork détail' },
+      { type: 'image', src: indySpider,       alt: 'Araignée hyper-réaliste en relief sur le bras' },
+      { type: 'video', src: '/videos/indy-blackwork.webp', video: '/videos/indy-blackwork.mp4', alt: 'Reel · manchette blackwork en cours', href: 'https://www.instagram.com/in_dtatts/' },
+      { type: 'image', src: indyWomanWolf,    alt: 'Manchette couleur, visage et loup, réalisme graphique' },
+      { type: 'image', src: indyDoberman,     alt: 'Portrait de dobermann réaliste sur le mollet' },
+      { type: 'image', src: indyAngel,        alt: "Avant-bras réaliste, ange et statue, noir & gris" },
+      { type: 'video', src: '/videos/indy-icarus.webp',    video: '/videos/indy-icarus.mp4',    alt: "Reel · la chute d'Icare, manchette réaliste", href: 'https://www.instagram.com/in_dtatts/' },
+      { type: 'image', src: indyTribalSleeve, alt: 'Manchette tribal / blackwork contemporain' },
+      { type: 'image', src: indyRamSkull,     alt: 'Crâne de bélier et couronne, blackwork' },
     ],
   },
 ]
@@ -203,8 +211,8 @@ export const FAQ = [
     a: "Non, la maison tatoue uniquement les personnes majeures. Une pièce d'identité vous sera demandée le jour de la séance.",
   },
   {
-    q: 'Comment choisir entre Marc, Isabelle et Indi ?',
-    a: "Selon le style qui vous parle : réalisme noir & gris pour Marc, fine line et couleur douce pour Isabelle, graphique et blackwork pour Indi. Dans le doute, décrivez votre projet : on vous oriente vers la bonne main.",
+    q: 'Comment choisir entre Mark, Zazz et Indy ?',
+    a: "Selon le style qui vous parle : réalisme et couleur pour Mark, fine line et couleur douce pour Zazz, blackwork et graphique pour Indy. Dans le doute, décrivez votre projet : on vous oriente vers la bonne main.",
   },
   {
     q: 'Comment entretenir un tatouage frais ?',

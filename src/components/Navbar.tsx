@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { X, Menu, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { useBooking } from '../booking'
 import { HOUSE } from '../config'
+import { logoMark } from '../assets'
 
 const NAV_LINKS = [
   { label: 'Les artistes', href: '#artistes' },
@@ -51,11 +52,16 @@ export default function Navbar() {
         <div className="max-w-container mx-auto px-5 md:px-10 flex items-center justify-between">
 
           {/* Logo */}
-          <a href="#hero" className="group flex items-baseline gap-2">
+          <a href="#hero" className="group flex items-center gap-2.5" aria-label="House of Gibbs — accueil">
+            <img
+              src={logoMark}
+              alt=""
+              aria-hidden="true"
+              className={`h-8 w-auto transition-[filter,transform] duration-300 group-hover:scale-105 ${scrolled ? '' : 'invert'}`}
+            />
             <span className={`font-display text-[1.4rem] font-500 tracking-tight leading-none transition-colors duration-300 ${scrolled ? 'text-ink' : 'text-white'}`}>
               House of Gibbs
             </span>
-            <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-green group-hover:scale-125 transition-transform duration-300" />
           </a>
 
           {/* Nav desktop */}
@@ -121,7 +127,10 @@ export default function Navbar() {
               className="fixed top-0 inset-x-0 z-[70] bg-white border-b border-line shadow-[0_24px_60px_-30px_rgba(21,32,27,0.5)] lg:hidden"
             >
               <div className="flex items-center justify-between px-5 sm:px-6 h-[64px] border-b border-line">
-                <span className="font-display text-lg font-500 text-ink">House of Gibbs</span>
+                <span className="flex items-center gap-2.5">
+                  <img src={logoMark} alt="" aria-hidden="true" className="h-7 w-auto" />
+                  <span className="font-display text-lg font-500 text-ink">House of Gibbs</span>
+                </span>
                 <button
                   onClick={() => setMenuOpen(false)}
                   className="w-11 h-11 -mr-2 flex items-center justify-center text-soft hover:text-ink transition-colors"

@@ -58,7 +58,7 @@ export default function About() {
               Sur rendez-vous uniquement. Ici, c'est votre projet qui compte.
             </p>
             <p className="font-sans text-[16px] md:text-[17px] text-ink/70 leading-relaxed text-pretty mb-8">
-              Pas de file d'attente, pas d'artiste pressé. Marc, Isabelle et Indi prennent le temps : écouter votre idée, la dessiner, faire les choses comme il faut. La vue sur Belledonne, elle, vient en prime.
+              Pas de file d'attente, pas d'artiste pressé. Mark, Zazz et Indy prennent le temps : comprendre votre idée, la développer, créer une pièce unique qui raconte votre histoire. Un travail de qualité dans un cadre calme et accueillant — la vue sur Belledonne, elle, vient en prime.
             </p>
             <button
               onClick={() => openBooking()}

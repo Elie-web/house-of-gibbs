@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import { HOUSE, ARTISTS } from '../config'
 import { InstagramIcon } from './icons'
+import { logoMark } from '../assets'
 
 const NAV_LINKS = [
   { label: 'Les artistes', href: '#artistes' },
@@ -19,6 +20,7 @@ export default function Footer() {
 
           {/* Identité */}
           <div>
+            <img src={logoMark} alt="House of Gibbs" className="h-12 w-auto mb-4 invert" />
             <p className="font-display text-2xl font-500 mb-1">{HOUSE.name}</p>
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-5">
               {HOUSE.city} · {HOUSE.department}

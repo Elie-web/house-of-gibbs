@@ -1,8 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useMemo } from 'react'
-import { X, ChevronLeft, ChevronRight, Play, Plus, ImageIcon } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Plus, ImageIcon, ArrowUpRight } from 'lucide-react'
 import { ARTISTS, type GalleryItem } from '../config'
-import { InstagramIcon } from './icons'
 import SectionHeader from './SectionHeader'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -61,9 +60,59 @@ function Lightbox({ photos, initial, onClose }: { photos: Tile[]; initial: numbe
   )
 }
 
+function VideoLightbox({ tile, onClose }: { tile: Tile; onClose: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/90 backdrop-blur-xl p-4"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.92, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.92, opacity: 0 }}
+        transition={{ ease, duration: 0.32 }}
+        className="relative w-full max-w-[420px]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <video
+          src={tile.video}
+          poster={tile.src}
+          controls
+          autoPlay
+          loop
+          playsInline
+          className="w-full h-auto max-h-[80vh] rounded-xl bg-black"
+        />
+        <button onClick={onClose} className="absolute -top-3 -right-1 sm:-right-3 w-10 h-10 bg-canvas/10 backdrop-blur-sm rounded-full flex items-center justify-center text-canvas hover:bg-green transition-colors" aria-label="Fermer">
+          <X size={17} />
+        </button>
+        <div className="flex items-center justify-between mt-4 gap-4">
+          <p className="font-sans text-sm text-ink-soft">
+            <span className="font-600 text-canvas">{tile.artistName}</span> · {tile.alt}
+          </p>
+          {tile.href && (
+            <a
+              href={tile.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 inline-flex items-center gap-1 font-mono text-[11px] text-muted hover:text-green-3 transition-colors"
+            >
+              Instagram <ArrowUpRight size={12} />
+            </a>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export default function Gallery() {
   const [filter, setFilter] = useState<string>('all')
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [videoTile, setVideoTile] = useState<Tile | null>(null)
 
   const tiles = useMemo(
     () => (filter === 'all' ? ALL_TILES : ALL_TILES.filter((t) => t.artistId === filter)),
@@ -161,54 +210,59 @@ export default function Gallery() {
 
               const inner = (
                 <>
-                  <img
-                    src={tile.src}
-                    alt={tile.alt}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
-                  />
+                  {isVideo && tile.video ? (
+                    <video
+                      src={tile.video}
+                      poster={tile.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
+                    />
+                  ) : (
+                    <img
+                      src={tile.src}
+                      alt={tile.alt}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
+                    />
+                  )}
                   <div className="absolute inset-0 ring-1 ring-inset ring-ink/5 rounded-2xl pointer-events-none" />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
 
-                  {/* Badge type */}
-                  <span
-                    className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: isVideo ? tile.accent : 'rgba(247,248,245,0.92)' }}
-                  >
-                    {isVideo
-                      ? <Play size={15} strokeWidth={2.5} className="ml-0.5" />
-                      : <Plus size={17} strokeWidth={2.25} className="text-ink" />}
-                  </span>
+                  {/* Badge agrandir (photos uniquement — les reels tournent en boucle) */}
+                  {!isVideo && (
+                    <span className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center bg-canvas/90 transition-transform duration-300 group-hover:scale-110">
+                      <Plus size={17} strokeWidth={2.25} className="text-ink" />
+                    </span>
+                  )}
 
                   {/* Légende */}
                   <span className="absolute left-4 right-4 bottom-4 flex items-center gap-2 text-left translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-[transform,opacity] duration-300">
                     <span className="h-px w-5 shrink-0" style={{ background: tile.accent }} />
                     <span className="font-mono text-[10.5px] uppercase tracking-wide text-canvas leading-tight">
-                      {isVideo ? 'Reel · ' : ''}{tile.artistName}
+                      {isVideo ? 'Reel · ' : 'Par '}{tile.artistName}
                     </span>
                   </span>
                 </>
               )
 
               return isVideo ? (
-                <motion.a
+                <motion.button
                   key={tile.uid}
                   layout
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.4, ease }}
-                  href={tile.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={() => (tile.video ? setVideoTile(tile) : window.open(tile.href, '_blank'))}
                   className={commonClass}
-                  aria-label={`Voir le reel : ${tile.alt}`}
+                  aria-label={`Lire le reel : ${tile.alt}`}
                 >
                   {inner}
-                  <span className="absolute bottom-3 right-3 flex items-center gap-1 text-canvas opacity-0 group-hover:opacity-100 transition-opacity">
-                    <InstagramIcon size={13} />
-                  </span>
-                </motion.a>
+                </motion.button>
               ) : (
                 <motion.button
                   key={tile.uid}
@@ -232,6 +286,12 @@ export default function Gallery() {
       <AnimatePresence>
         {lightboxIndex !== null && lightboxIndex >= 0 && (
           <Lightbox photos={images} initial={lightboxIndex} onClose={() => setLightboxIndex(null)} />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {videoTile && (
+          <VideoLightbox tile={videoTile} onClose={() => setVideoTile(null)} />
         )}
       </AnimatePresence>
     </section>
