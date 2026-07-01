@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
-import { ArrowRight, ChevronDown, Mountain, Star, Phone, Clock, ShieldCheck, type LucideIcon } from 'lucide-react'
+import { ArrowRight, ChevronDown, Mountain, Star, Phone } from 'lucide-react'
 import { HOUSE, SOCIAL, REASSURANCE } from '../config'
 import { useBooking } from '../booking'
 import Magnetic from './Magnetic'
@@ -8,9 +8,8 @@ import { GoogleG } from './icons'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-// Repères de confiance affichés dans le hero (hors note Google, déjà en pastille)
-const TRUST_ICONS: Record<string, LucideIcon> = { clock: Clock, shield: ShieldCheck, mountain: Mountain }
-const TRUST = REASSURANCE.filter((r) => r.icon !== 'star')
+// Repères de confiance affichés sous la note Google (hors note + hygiène)
+const TRUST = REASSURANCE.filter((r) => r.icon !== 'star' && r.icon !== 'shield')
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
@@ -110,58 +109,54 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Preuve sociale */}
+        {/* Preuve sociale — un seul bloc typographique soigné, pas une pile de pilules */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.0, ease }}
-          className="mt-8 flex flex-col items-center gap-4"
+          className="mt-9 flex flex-col items-center gap-3"
         >
+          {/* Note Google — lockup mis en valeur */}
           <a
             href={SOCIAL.reviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-md pl-4 pr-3.5 py-2 hover:bg-white/15 transition-colors"
+            className="group inline-flex items-center gap-2.5 text-white"
             aria-label={`${SOCIAL.rating} sur 5 sur Google, ${SOCIAL.reviewCount} avis`}
           >
             <span className="flex gap-0.5" aria-hidden="true">
               {[0, 1, 2, 3, 4].map((i) => (
-                <Star key={i} size={15} className="fill-amber-400 text-amber-400" />
+                <Star key={i} size={17} className="fill-amber-400 text-amber-400" />
               ))}
             </span>
+            <span className="font-display text-xl font-600 leading-none tracking-tight">{SOCIAL.rating}</span>
             <span className="h-4 w-px bg-white/25" aria-hidden="true" />
-            <span className="flex items-center gap-1.5">
-              <GoogleG size={15} />
-              <span className="font-700 text-sm text-white">{SOCIAL.rating}</span>
-              <span className="text-[13px] text-white/65">· {SOCIAL.reviewCount} avis</span>
+            <span className="inline-flex items-center gap-1.5 text-[13px] text-white/75">
+              <GoogleG size={14} />
+              <span className="border-b border-transparent group-hover:border-white/40 transition-colors">
+                {SOCIAL.reviewCount} avis Google
+              </span>
             </span>
           </a>
 
-          {/* Repères de confiance — remontés du bandeau, en chips compactes */}
-          <ul className="flex flex-wrap items-center justify-center gap-2">
-            {TRUST.map((r) => {
-              const Icon = TRUST_ICONS[r.icon] ?? ShieldCheck
-              return (
-                <li
-                  key={r.title}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 backdrop-blur-md px-3 py-1.5"
-                >
-                  <Icon size={13} strokeWidth={2} className="text-green-3 shrink-0" aria-hidden="true" />
-                  <span className="font-sans text-[12px] font-500 text-white/90 whitespace-nowrap">{r.title}</span>
-                </li>
-              )
-            })}
-          </ul>
-
-          {/* Téléphone — visible immédiatement pour les visiteurs Maps */}
-          <a
-            href={`tel:${HOUSE.phoneRaw}`}
-            className="inline-flex items-center gap-2 font-mono text-[12.5px] text-white/55 hover:text-white/90 transition-colors duration-200"
-            aria-label={`Appeler le ${HOUSE.phone}`}
-          >
-            <Phone size={13} strokeWidth={2} />
-            {HOUSE.phone}
-          </a>
+          {/* Repères + téléphone — fine ligne pointée, aucune pilule */}
+          <p className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 font-mono text-[11px] uppercase tracking-wider text-white/60">
+            {TRUST.map((r, i) => (
+              <span key={r.title} className="inline-flex items-center">
+                {i > 0 && <span className="mr-2.5 text-green-3" aria-hidden="true">·</span>}
+                {r.title}
+              </span>
+            ))}
+            <span className="text-green-3" aria-hidden="true">·</span>
+            <a
+              href={`tel:${HOUSE.phoneRaw}`}
+              className="inline-flex items-center gap-1.5 text-white/75 hover:text-white transition-colors duration-200"
+              aria-label={`Appeler le ${HOUSE.phone}`}
+            >
+              <Phone size={11} strokeWidth={2} aria-hidden="true" />
+              {HOUSE.phone}
+            </a>
+          </p>
         </motion.div>
       </motion.div>
 
