@@ -35,7 +35,7 @@ export default function Testimonials() {
           lead="Vous avez vu le travail. Voici la voix de celles et ceux qui le portent tous les jours."
         />
 
-        {/* Note Google — prominente */}
+        {/* Note Google - prominente */}
         <motion.a
           href={SOCIAL.reviewsUrl}
           target="_blank"
@@ -75,7 +75,7 @@ export default function Testimonials() {
           </figcaption>
         </motion.figure>
 
-        {/* Autres avis — en cartes, centrés */}
+        {/* Autres avis - en cartes, centrés */}
         <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
           {rest.map((review, i) => (
             <motion.figure

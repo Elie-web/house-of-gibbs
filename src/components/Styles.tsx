@@ -7,7 +7,7 @@ import SectionHeader from './SectionHeader'
 const ease = [0.22, 1, 0.36, 1] as const
 
 /**
- * « Par style » — le client sait en dix secondes si la maison fait ce qu'il
+ * « Par style » - le client sait en dix secondes si la maison fait ce qu'il
  * cherche. Complète le filtre par artiste de la galerie. Quatre styles, gros
  * visuels, légende sobre. Le fine line de Zazz est en attente de photos.
  */

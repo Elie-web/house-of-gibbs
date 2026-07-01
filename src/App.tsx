@@ -29,37 +29,37 @@ export default function App() {
         <Navbar />
 
         <main id="contenu">
-          {/* 1. Accroche — CTA immédiat + preuve sociale intégrée (note Google + repères de confiance) */}
+          {/* 1. Accroche - CTA immédiat + preuve sociale intégrée (note Google + repères de confiance) */}
           <Hero />
 
-          {/* 2. Qui va me tatouer — lien personnel, le collectif familial */}
+          {/* 2. Qui va me tatouer - lien personnel, le collectif familial */}
           <Artists />
 
-          {/* 4. Par style — le client trouve son langage en 10 s */}
+          {/* 4. Par style - le client trouve son langage en 10 s */}
           <Styles />
 
-          {/* 5. Leur travail — valide la qualité */}
+          {/* 5. Leur travail - valide la qualité */}
           <Gallery />
 
-          {/* 6. Pièce en lumière — spotlight sombre façon galerie d'art */}
+          {/* 6. Pièce en lumière - spotlight sombre façon galerie d'art */}
           <Spotlight />
 
-          {/* 7. La preuve sociale — remontée : « ils sont bien notés » juste après le travail */}
+          {/* 7. La preuve sociale - remontée : « ils sont bien notés » juste après le travail */}
           <Testimonials />
 
-          {/* 8. Comment ça se passe — réduit l'anxiété */}
+          {/* 8. Comment ça se passe - réduit l'anxiété */}
           <Process />
 
-          {/* 9. Le soin — aftercare, prouve l'expertise */}
+          {/* 9. Le soin - aftercare, prouve l'expertise */}
           <Aftercare />
 
-          {/* 10. Le studio — l'expérience & le lieu */}
+          {/* 10. Le studio - l'expérience & le lieu */}
           <About />
 
           {/* 11. Rester en lien */}
           <Instagram />
 
-          {/* 12. Lever les derniers doutes — juste avant de réserver */}
+          {/* 12. Lever les derniers doutes - juste avant de réserver */}
           <Faq />
 
           {/* 13. Le climax : venir & réserver */}

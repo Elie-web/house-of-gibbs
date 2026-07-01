@@ -256,7 +256,7 @@ export default function Gallery() {
                 <div className="absolute inset-0 ring-1 ring-inset ring-ink/5 rounded-2xl pointer-events-none" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 opacity-70 group-hover:opacity-100 transition-opacity duration-400" />
 
-                {/* Badge agrandir (photos uniquement — les reels tournent en boucle) */}
+                {/* Badge agrandir (photos uniquement - les reels tournent en boucle) */}
                 {!isVideo && (
                   <span className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center bg-canvas/90 transition-transform duration-300 group-hover:scale-110">
                     <Plus size={17} strokeWidth={2.25} className="text-ink" />

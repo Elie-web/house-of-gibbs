@@ -10,11 +10,11 @@ const ease = [0.22, 1, 0.36, 1] as const
 const spring = { type: 'spring', stiffness: 220, damping: 19 } as const
 
 /**
- * « Le déroulé » — un tatouage est un seul trait continu, du premier croquis
+ * « Le déroulé » - un tatouage est un seul trait continu, du premier croquis
  * à la dernière ligne. Ce fil conducteur est rendu littéral : une fine ligne
  * émeraude s'encre au scroll par-dessus un tracé-repère « stencil », et relie
  * trois temps. Chaque temps porte une vraie photo de la maison, recadrée net,
- * révélée par un voile, avec deux petits pop-ups qui flottent — assez de vie
+ * révélée par un voile, avec deux petits pop-ups qui flottent - assez de vie
  * pour un studio de tatouage, sans le désordre des cadres penchés d'avant.
  */
 
@@ -148,7 +148,7 @@ function ProcessStep({ step, index }: { step: Step; index: number }) {
 
   return (
     <li className="grid grid-cols-[56px_1fr] md:grid-cols-[120px_1fr] gap-x-5 md:gap-x-12">
-      {/* Numéro — nœud du trait, se colore quand la ligne le rejoint */}
+      {/* Numéro - nœud du trait, se colore quand la ligne le rejoint */}
       <span
         ref={ref}
         data-node

@@ -7,7 +7,7 @@ import SectionHeader from './SectionHeader'
 const ease = [0.22, 1, 0.36, 1] as const
 
 /**
- * « Le soin » — l'aftercare prouve l'expertise et rassure : un tatouage bien
+ * « Le soin » - l'aftercare prouve l'expertise et rassure : un tatouage bien
  * accompagné garde la netteté de son trait pendant des décennies. Présenté en
  * liste éditoriale (pas en grille de cartes) pour rester sobre.
  */
@@ -29,7 +29,7 @@ export default function Aftercare() {
         <SectionHeader
           kicker="Après la séance"
           title={<>Une fois la séance finie, <span className="italic-display text-gradient-green-static">le soin prend le relais</span>.</>}
-          lead="Bien accompagné, un trait garde sa netteté des années durant. L'essentiel tient en quelques gestes — le reste, on vous l'explique de vive voix."
+          lead="Bien accompagné, un trait garde sa netteté des années durant. L'essentiel tient en quelques gestes. Le reste, on vous l'explique de vive voix."
         />
 
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center max-w-5xl mx-auto">
@@ -55,7 +55,7 @@ export default function Aftercare() {
             </button>
           </motion.div>
 
-          {/* Gestes essentiels — liste séparée par hairlines */}
+          {/* Gestes essentiels - liste séparée par hairlines */}
           <motion.ul
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}

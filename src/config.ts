@@ -1,5 +1,5 @@
 ﻿// ================================================================
-// CONFIGURATION HOUSE OF GIBBS — Personnalisez uniquement ce fichier
+// CONFIGURATION HOUSE OF GIBBS - Personnalisez uniquement ce fichier
 // ----------------------------------------------------------------
 // Collectif familial de tatoueurs : Mark (le père), Zazz (la mère),
 // Indy (le fils). Studio privé en hauteur à Saint-Baldoph, vue Belledonne.
@@ -93,7 +93,7 @@ export const ARTISTS: Artist[] = [
     role:      'Le père',
     specialty: 'Réalisme · noir & gris · couleur',
     accent:    '#2B312E', // graphite
-    bio:       "Trente ans que Mark ne parle qu'une seule langue : celle du réalisme. Il connaît la profondeur d'un dégradé, le poids d'une ombre, l'endroit exact où un trait doit se poser pour ne plus jamais bouger. Sous son aiguille, une photo devient peau et un souvenir prend du relief. Il ne cherche pas l'effet du moment — il dessine des pièces qui auront encore de l'allure dans vingt ans, et qui vieilliront avec vous plutôt que contre vous.",
+    bio:       "Trente ans que Mark ne parle qu'une seule langue : celle du réalisme. Il connaît la profondeur d'un dégradé, le poids d'une ombre, l'endroit exact où un trait doit se poser pour ne plus jamais bouger. Sous son aiguille, une photo devient peau et un souvenir prend du relief. Il ne cherche pas l'effet du moment. Il dessine des pièces qui auront encore de l'allure dans vingt ans, et qui vieilliront avec vous plutôt que contre vous.",
     portrait:  markSelfie,
     instagram: 'https://www.instagram.com/markblackscab/?hl=fr',
     facebook:  'https://www.facebook.com/p/Blackscab-Tattoos-Chambéry-73-100063680827033/?locale=fr_FR',
@@ -114,7 +114,7 @@ export const ARTISTS: Artist[] = [
     specialty: 'Fine line · floral · couleur douce',
     accent:    '#16745A', // émeraude (couleur maison)
     bio:       "Zazz dessine comme elle écoute : lentement, jusqu'à ce que votre idée trouve sa forme la plus juste. Ses lignes sont fines, ses fleurs presque vivantes, ses couleurs posées avec la douceur d'un souffle. On vient la voir pour une pièce délicate, on repart avec un peu de soi, mis en trait.",
-    portrait:  '', // placeholder — photos à venir
+    portrait:  '', // placeholder - photos à venir
     instagram: 'https://www.instagram.com/',
     gallery: [
       { type: 'image', src: '', alt: 'Composition florale fine line' },
@@ -130,7 +130,7 @@ export const ARTISTS: Artist[] = [
     role:      'Le fils',
     specialty: 'Réalisme · blackwork · graphique',
     accent:    '#11998E', // vert-teal frais
-    bio:       "Indy, c'est l'œil graphique de la maison : un noir profond et franc, un réalisme net, des compositions qui tiennent debout toutes seules. Il ne recopie jamais rien. Chaque motif naît pour une peau et une seule, et n'existera nulle part ailleurs — le vôtre n'appartiendra qu'à vous.",
+    bio:       "Indy, c'est l'œil graphique de la maison : un noir profond et franc, un réalisme net, des compositions qui tiennent debout toutes seules. Il ne recopie jamais rien. Chaque motif naît pour une peau et une seule, et n'existera nulle part ailleurs : le vôtre n'appartiendra qu'à vous.",
     portrait:  indyPortrait,
     instagram: 'https://www.instagram.com/in_dtatts/',
     gallery: [

@@ -109,14 +109,14 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Preuve sociale — un seul bloc typographique soigné, pas une pile de pilules */}
+        {/* Preuve sociale - un seul bloc typographique soigné, pas une pile de pilules */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.0, ease }}
           className="mt-9 flex flex-col items-center gap-3"
         >
-          {/* Note Google — lockup mis en valeur */}
+          {/* Note Google - lockup mis en valeur */}
           <a
             href={SOCIAL.reviewsUrl}
             target="_blank"
@@ -139,7 +139,7 @@ export default function Hero() {
             </span>
           </a>
 
-          {/* Repères + téléphone — fine ligne pointée, aucune pilule */}
+          {/* Repères + téléphone - fine ligne pointée, aucune pilule */}
           <p className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 font-mono text-[11px] uppercase tracking-wider text-white/60">
             {TRUST.map((r, i) => (
               <span key={r.title} className="inline-flex items-center">

@@ -22,7 +22,7 @@ export default function Artists() {
         <SectionHeader
           kicker="Les artistes"
           title={<>Père, mère, fils. <span className="italic-display text-gradient-green-static">Trois mains, un seul studio.</span></>}
-          lead="Mark, Zazz et Indy. Une même passion du tatouage, trois univers complémentaires — et à chacun sa façon bien à lui de marquer la peau."
+          lead="Mark, Zazz et Indy. Une même passion du tatouage, trois univers complémentaires, et à chacun sa façon bien à lui de marquer la peau."
         />
 
         {/* Cartes artistes */}

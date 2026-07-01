@@ -7,7 +7,7 @@ import { markForearmPortrait, markChestSamurai, indyWomanWolf } from '../assets'
 const ease = [0.22, 1, 0.36, 1] as const
 
 /**
- * « Pièce en lumière » — le seul moment sombre du site. Un spotlight façon
+ * « Pièce en lumière » - le seul moment sombre du site. Un spotlight façon
  * galerie d'art : une pièce signature à la fois, en grand, sur fond encre,
  * où la couleur du tatouage claque comme sur un mur de musée. Légende
  * éditoriale + vignettes pour passer d'une pièce à l'autre. Sobre, dramatique.
@@ -89,7 +89,7 @@ export default function Spotlight() {
         </div>
 
         <div className="grid lg:grid-cols-[1.35fr_1fr] gap-8 md:gap-12 lg:gap-16 items-center">
-          {/* Image principale — crossfade au changement */}
+          {/* Image principale - crossfade au changement */}
           <motion.div
             initial={reduce ? false : { opacity: 0, scale: 0.97 }}
             animate={inView ? { opacity: 1, scale: 1 } : undefined}
@@ -149,7 +149,7 @@ export default function Spotlight() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Vignettes — sélecteur de pièce */}
+            {/* Vignettes - sélecteur de pièce */}
             <div className="flex items-center gap-3 mt-9 pt-8 border-t border-ink-line">
               {PIECES.map((p, i) => {
                 const on = i === active

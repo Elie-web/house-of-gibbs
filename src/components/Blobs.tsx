@@ -3,7 +3,7 @@ type BlobsProps = {
   className?: string
 }
 
-// Halos verts très diffus qui dérivent lentement — lumière douce, discrète.
+// Halos verts très diffus qui dérivent lentement - lumière douce, discrète.
 export default function Blobs({ tone = 'light', className = '' }: BlobsProps) {
   const op = tone === 'dark' ? 'opacity-40' : 'opacity-[0.16]'
   return (

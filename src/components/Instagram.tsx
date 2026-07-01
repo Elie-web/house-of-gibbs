@@ -52,7 +52,7 @@ export default function Instagram() {
           </div>
         </motion.div>
 
-        {/* Carousel contenu — cartes qui défilent, jamais collées au bord */}
+        {/* Carousel contenu - cartes qui défilent, jamais collées au bord */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}

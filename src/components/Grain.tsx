@@ -5,7 +5,7 @@
 export default function Grain() {
   return (
     <>
-      {/* Halos ambiants verts — z-0, visibles à travers les sections transparentes */}
+      {/* Halos ambiants verts - z-0, visibles à travers les sections transparentes */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 z-0"
@@ -14,7 +14,7 @@ export default function Grain() {
             'radial-gradient(55% 45% at 82% -5%, rgba(22,116,90,0.10), transparent 70%), radial-gradient(50% 45% at 0% 60%, rgba(17,153,142,0.07), transparent 70%), radial-gradient(60% 50% at 100% 105%, rgba(14,83,64,0.06), transparent 70%)',
         }}
       />
-      {/* Grain fin (SVG feTurbulence) — au-dessus du contenu, mélange multiply */}
+      {/* Grain fin (SVG feTurbulence) - au-dessus du contenu, mélange multiply */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 z-[45] opacity-[0.04] mix-blend-multiply"

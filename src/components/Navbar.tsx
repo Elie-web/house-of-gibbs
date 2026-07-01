@@ -19,7 +19,7 @@ export default function Navbar() {
   const { openBooking } = useBooking()
 
   // Reste transparent (texte blanc) sur tout le hero plein écran, puis
-  // bascule en barre claire une fois le hero dépassé — pas de flash de contraste.
+  // bascule en barre claire une fois le hero dépassé - pas de flash de contraste.
   useMotionValueEvent(scrollY, 'change', (y) => {
     const trigger = typeof window !== 'undefined' ? window.innerHeight * 0.82 : 600
     setScrolled(y > trigger)
@@ -103,7 +103,7 @@ export default function Navbar() {
         </div>
       </motion.header>
 
-      {/* Menu mobile — feuille compacte qui descend sous l'en-tête.
+      {/* Menu mobile - feuille compacte qui descend sous l'en-tête.
           Hauteur = contenu (jamais plein écran) : reste lisible même
           dans un aperçu qui aplatit les éléments `position: fixed`. */}
       <AnimatePresence>

@@ -38,7 +38,7 @@ export default function Faq() {
           </button>
         </motion.div>
 
-        {/* Accordéon — une carte par question */}
+        {/* Accordéon - une carte par question */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
