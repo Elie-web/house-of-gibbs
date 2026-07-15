@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Phone, MapPin, Mail, ArrowUpRight, MessageCircleQuestion, CalendarCheck } from 'lucide-react'
 import { HOUSE } from '../config'
-import { InstagramIcon } from './icons'
+import { InstagramIcon, FacebookIcon } from './icons'
 import SectionHeader from './SectionHeader'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -10,6 +10,7 @@ const ease = [0.22, 1, 0.36, 1] as const
 // Canaux de contact directs (aucun formulaire, souhait de Mark)
 const CHANNELS = [
   { key: 'instagram', label: 'Instagram', sub: 'Message direct', href: HOUSE.instagram, external: true, icon: <InstagramIcon size={18} strokeWidth={2} /> },
+  { key: 'facebook',  label: 'Facebook',  sub: 'Message direct', href: HOUSE.facebook,  external: true, icon: <FacebookIcon size={18} strokeWidth={2} /> },
   { key: 'email',     label: 'E-mail',    sub: HOUSE.email,      href: `mailto:${HOUSE.email}`, icon: <Mail size={18} strokeWidth={1.9} /> },
   { key: 'phone',     label: 'Téléphone', sub: HOUSE.phone,      href: `tel:${HOUSE.phoneRaw}`, icon: <Phone size={17} strokeWidth={2} /> },
 ]

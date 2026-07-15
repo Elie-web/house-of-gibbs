@@ -7,7 +7,6 @@ import { useBooking } from '../booking'
 import SectionHeader from './SectionHeader'
 
 const ease = [0.22, 1, 0.36, 1] as const
-const spring = { type: 'spring', stiffness: 220, damping: 19 } as const
 
 /**
  * « Le déroulé » - un tatouage est un seul trait continu, du premier croquis
@@ -55,50 +54,37 @@ const MEDIA: Record<string, Media> = {
   },
 }
 
-/* ── Pop-up flottant : entre par un « pop », puis respire en boucle ───── */
-function Popup({ chip, accent, soft, reduce }: { chip: Chip; accent: string; soft: string; reduce: boolean }) {
+/* ── Pop-up : petite étiquette posée sur la photo (statique, sans mouvement) ─ */
+function Popup({ chip, accent, soft }: { chip: Chip; accent: string; soft: string }) {
   return (
-    <motion.div
-      initial={reduce ? false : { opacity: 0, scale: 0.7, y: 8 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, margin: '-8%' }}
-      transition={{ ...spring, delay: 0.25 + (chip.delay ?? 0) }}
-      style={chip.pos}
-      className="absolute z-20"
-    >
-      <motion.div
-        animate={reduce ? undefined : { y: [0, -5, 0] }}
-        transition={reduce ? undefined : { duration: 3.8 + (chip.delay ?? 0), repeat: Infinity, ease: 'easeInOut' }}
-      >
-        {chip.solid ? (
+    <div style={chip.pos} className="absolute z-20">
+      {chip.solid ? (
+        <span
+          className="block rounded-full font-mono font-700 uppercase text-canvas whitespace-nowrap"
+          style={{ background: accent, padding: '6px 12px', fontSize: '0.55rem', letterSpacing: '0.12em', border: '3px solid #F7F8F5' }}
+        >
+          {chip.label}
+        </span>
+      ) : (
+        <span
+          className="flex items-center gap-2 rounded-full bg-white border border-line shadow-luxe whitespace-nowrap"
+          style={{ padding: '6px 12px 6px 6px' }}
+        >
           <span
-            className="block rounded-full font-mono font-700 uppercase text-canvas whitespace-nowrap"
-            style={{ background: accent, padding: '6px 12px', fontSize: '0.55rem', letterSpacing: '0.12em', border: '3px solid #F7F8F5' }}
+            className="w-[24px] h-[24px] rounded-full flex items-center justify-center shrink-0"
+            style={{ background: soft, color: accent }}
           >
-            {chip.label}
+            {chip.icon}
           </span>
-        ) : (
-          <span
-            className="flex items-center gap-2 rounded-full bg-white border border-line shadow-luxe whitespace-nowrap"
-            style={{ padding: '6px 12px 6px 6px' }}
-          >
-            <span
-              className="w-[24px] h-[24px] rounded-full flex items-center justify-center shrink-0"
-              style={{ background: soft, color: accent }}
-            >
-              {chip.icon}
-            </span>
-            <span className="font-sans text-[0.72rem] font-600 text-ink">{chip.label}</span>
-          </span>
-        )}
-      </motion.div>
-    </motion.div>
+          <span className="font-sans text-[0.72rem] font-600 text-ink">{chip.label}</span>
+        </span>
+      )}
+    </div>
   )
 }
 
-/* ── Photo d'étape : recadrée net, révélée par un voile, accent en bas ── */
+/* ── Photo d'étape : recadrée net, voile bas léger, accent en bas ─────── */
 function StepPhoto({ media }: { media: Media }) {
-  const reduce = useReducedMotion()
   return (
     <div className="relative w-full max-w-[330px]">
       {/* halo de couleur diffus derrière, pour la profondeur */}
@@ -112,15 +98,11 @@ function StepPhoto({ media }: { media: Media }) {
         <div className="overflow-hidden" style={{ aspectRatio: '4 / 5' }}>
           {/* calque de zoom au survol (transform CSS, libre du transform Framer) */}
           <div className="w-full h-full transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]">
-            <motion.img
+            <img
               src={media.img}
               alt={media.alt}
               loading="lazy"
               decoding="async"
-              initial={reduce ? false : { clipPath: 'inset(100% 0 0 0)' }}
-              whileInView={{ clipPath: 'inset(0% 0 0 0)' }}
-              viewport={{ once: true, margin: '-12%' }}
-              transition={{ duration: 1.1, ease }}
               className="w-full h-full object-cover block"
             />
           </div>
@@ -131,7 +113,7 @@ function StepPhoto({ media }: { media: Media }) {
       </div>
 
       {media.chips.map((chip, i) => (
-        <Popup key={i} chip={chip} accent={media.accent} soft={media.soft} reduce={!!reduce} />
+        <Popup key={i} chip={chip} accent={media.accent} soft={media.soft} />
       ))}
     </div>
   )

@@ -44,7 +44,11 @@ export const HOUSE = {
   mapsUrl:    'https://maps.google.com/?q=190+Chemin+de+Moulevin+73190+Saint-Baldoph',
   mapEmbed:   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2785.4!2d5.9882!3d45.5497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478b8f3a3b9e8f0b%3A0x1234!2s190+Chemin+de+Moulevin%2C+73190+Saint-Baldoph!5e0!3m2!1sfr!2sfr!4v1700000000000',
 
-  instagram:  'https://www.instagram.com/',
+  // Pas encore de comptes « maison » : on pointe vers les réseaux réels de Mark
+  // (seuls comptes actifs pour l'instant). À basculer sur les comptes House of
+  // Gibbs dès qu'ils existent.
+  instagram:  'https://www.instagram.com/markblackscab/',
+  facebook:   'https://www.facebook.com/p/Blackscab-Tattoos-Chambéry-73-100063680827033/?locale=fr_FR',
 
   // --- Envoi du formulaire par e-mail (automatique) --------------
   // Laisser vide => repli sur l'ouverture du client mail (mailto).

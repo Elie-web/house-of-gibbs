@@ -72,15 +72,19 @@ export default function About() {
             className="flex flex-col"
           >
             <p className="font-sans text-[19px] md:text-[22px] text-canvas leading-snug text-pretty font-500 mb-5">
-              Sur rendez-vous uniquement. Ici, c'est votre projet qui compte.
+              House of Gibbs est un collectif familial de tatoueurs basé en Savoie.
+            </p>
+            <p className="font-sans text-[16px] md:text-[17px] text-ink-soft leading-relaxed text-pretty mb-5">
+              Fondé autour d'une passion commune pour le tatouage, il réunit trois artistes aux
+              univers complémentaires : Mark, Zaz et Indy. Chaque projet est abordé avec la même
+              exigence : prendre le temps de comprendre votre idée, la développer et créer un
+              tatouage unique, pensé pour vous.
             </p>
             <p className="font-sans text-[16px] md:text-[17px] text-ink-soft leading-relaxed text-pretty mb-8">
-              Chaque projet est abordé avec la même exigence : prendre le temps de comprendre
-              votre idée, la développer et créer un tatouage unique, pensé pour vous. Chez House
-              of Gibbs, nous privilégions les projets personnalisés et les tatouages qui racontent
-              une histoire. Notre objectif est simple : proposer un travail de qualité dans un
-              environnement calme, humain et accueillant, où chaque client se sent écouté dès la
-              première rencontre.
+              Chez House of Gibbs, nous privilégions les projets personnalisés et les tatouages
+              qui racontent une histoire. Notre objectif est simple : proposer un travail de
+              qualité dans un environnement calme, humain et accueillant, où chaque client se
+              sent écouté dès la première rencontre.
             </p>
 
             <ul className="flex flex-wrap gap-x-8 gap-y-4 mb-9">

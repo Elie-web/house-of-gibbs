@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { X, ChevronLeft, ChevronRight, Play, ImageIcon, ArrowUpRight } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Play, ImageIcon, ArrowUpRight, Maximize2 } from 'lucide-react'
 import { ARTISTS, type GalleryItem, type Artist } from '../config'
 import { InstagramIcon } from './icons'
 
@@ -188,11 +188,17 @@ function ArtistGallery({ artist, onOpenPhoto, onOpenVideo }: {
               )}
               <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl pointer-events-none" />
               <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/25 transition-colors duration-300" />
-              {isVideo && (
+              {isVideo ? (
                 <span className="absolute inset-0 flex items-center justify-center">
                   <span className="w-11 h-11 rounded-full bg-ink/55 backdrop-blur-sm flex items-center justify-center ring-1 ring-white/25 transition-transform duration-300 group-hover:scale-110">
                     <Play size={16} className="text-canvas translate-x-0.5" fill="currentColor" />
                   </span>
+                </span>
+              ) : (
+                // Indice « cliquer pour agrandir » : discret en permanence (repérable
+                // aussi au toucher), un cran plus marqué au survol.
+                <span className="absolute bottom-2 right-2 w-7 h-7 rounded-full bg-ink/40 backdrop-blur-sm flex items-center justify-center ring-1 ring-white/20 opacity-70 transition-[opacity,transform] duration-300 group-hover:opacity-100 group-hover:scale-110">
+                  <Maximize2 size={12} strokeWidth={2} className="text-canvas" />
                 </span>
               )}
             </>
