@@ -32,7 +32,7 @@ export default function Hero() {
       >
         <img
           src={HOUSE.heroImage}
-          alt="Araignée hyper-réaliste en relief, réalisée par Indy chez House of Gibbs"
+          alt="Manchette réaliste forêt, montagnes et coucher de soleil, réalisée par Mark chez House of Gibbs"
           className="w-full h-full object-cover object-center"
           loading="eager"
           fetchPriority="high"

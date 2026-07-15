@@ -99,7 +99,7 @@ export default function Footer() {
           <div>
             <img src={logoMark} alt="House of Gibbs" className="h-12 w-auto mb-4 invert" />
             <p className="font-display text-2xl font-500 mb-1">{HOUSE.name}</p>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-5">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-ink-soft mb-5">
               {HOUSE.city} · {HOUSE.department}
             </p>
             <p className="font-sans text-sm text-ink-soft leading-relaxed max-w-xs mb-6">
@@ -109,7 +109,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-5">Navigation</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-ink-soft mb-5">Navigation</p>
             <nav className="flex flex-col gap-2.5">
               {NAV_LINKS.map((link) => (
                 <a key={link.href} href={link.href} className="font-sans text-sm text-ink-soft hover:text-green-3 transition-colors w-fit">
@@ -121,7 +121,7 @@ export default function Footer() {
 
           {/* Artistes + contact */}
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-5">Les artistes</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-ink-soft mb-5">Les artistes</p>
             <div className="flex flex-col gap-2.5 mb-6">
               {ARTISTS.map((a) => (
                 <a
@@ -154,15 +154,15 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-green-bg-line flex flex-col md:flex-row items-center justify-between gap-3 text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-            <p className="font-sans text-xs text-muted">© 2026 {HOUSE.name}. Tous droits réservés.</p>
+            <p className="font-sans text-xs text-ink-soft">© 2026 {HOUSE.name}. Tous droits réservés.</p>
             <button
               onClick={() => setLegalOpen(true)}
-              className="font-sans text-xs text-muted hover:text-green-3 underline underline-offset-2 decoration-ink-line hover:decoration-green-3 transition-colors"
+              className="font-sans text-xs text-ink-soft hover:text-green-3 underline underline-offset-2 decoration-ink-line hover:decoration-green-3 transition-colors"
             >
               Mentions légales
             </button>
           </div>
-          <p className="font-sans text-xs text-muted">
+          <p className="font-sans text-xs text-ink-soft">
             Site web réalisé par{' '}
             <a
               href="https://elieageron.com"
