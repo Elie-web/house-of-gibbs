@@ -1,6 +1,7 @@
 // Centralise tous les imports d'assets locaux
 import markSelfie from './assets/mark selfie-converti-depuis-jpg.webp'
 import heroLandscape from './assets/hero-tattoo-landscape.webp'
+import heroSpider from './assets/hero-spider.webp'   // araignée d'Indy (IMG_1313), photo hero
 
 // --- Identité visuelle -------------------------------------------
 import logoFull from './assets/logo-full.webp'   // monogramme + « House of Gibbs »
@@ -28,6 +29,7 @@ import processDesign        from './assets/process-design.webp'  // planche de c
 export {
   markSelfie,
   heroLandscape,
+  heroSpider,
   logoFull,
   logoMark,
   markMountainSleeve,

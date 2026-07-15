@@ -9,8 +9,7 @@ const ease = [0.22, 1, 0.36, 1] as const
 
 const NAV_LINKS = [
   { label: 'Les artistes', href: '#artistes' },
-  { label: 'Galerie',      href: '#galerie' },
-  { label: 'Avis',         href: '#avis' },
+  { label: 'Les galeries', href: '#galeries' },
   { label: 'Instagram',    href: '#instagram' },
   { label: 'Contact',      href: '#studio' },
 ]
@@ -91,7 +90,7 @@ export default function Footer() {
   const [legalOpen, setLegalOpen] = useState(false)
 
   return (
-    <footer className="bg-ink text-canvas px-5 md:px-10 pt-16 pb-28 lg:pb-10">
+    <footer className="bg-green-bg text-canvas px-5 md:px-10 pt-16 pb-28 lg:pb-10">
       <div className="max-w-container mx-auto">
 
         <div className="grid md:grid-cols-[1.4fr_1fr_1fr] gap-12 mb-14">
@@ -104,10 +103,8 @@ export default function Footer() {
               {HOUSE.city} · {HOUSE.department}
             </p>
             <p className="font-sans text-sm text-ink-soft leading-relaxed max-w-xs mb-6">
-              Collectif familial de tatoueurs. Studio privé en hauteur, vue sur Belledonne.
-              Sur rendez-vous uniquement.
+              Collectif familial de tatoueurs. Studio privé en hauteur, sur rendez-vous uniquement.
             </p>
-            <p className="font-display text-base italic-display text-green-3">« {HOUSE.tagline} »</p>
           </div>
 
           {/* Navigation */}
@@ -155,7 +152,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-ink-line flex flex-col md:flex-row items-center justify-between gap-3 text-center">
+        <div className="pt-8 border-t border-green-bg-line flex flex-col md:flex-row items-center justify-between gap-3 text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <p className="font-sans text-xs text-muted">© 2026 {HOUSE.name}. Tous droits réservés.</p>
             <button

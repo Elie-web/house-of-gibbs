@@ -7,8 +7,7 @@ import { logoMark } from '../assets'
 
 const NAV_LINKS = [
   { label: 'Les artistes', href: '#artistes' },
-  { label: 'Galerie',      href: '#galerie' },
-  { label: 'Avis',         href: '#avis' },
+  { label: 'Les galeries', href: '#galeries' },
   { label: 'Contact',      href: '#studio' },
 ]
 

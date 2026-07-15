@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>House of Gibbs · Choix de la typographie</title>
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alfa+Slab+One&family=Anton&family=Archivo:wght@600;700&family=Bebas+Neue&family=Big+Shoulders+Display:wght@600;700&family=Bodoni+Moda:opsz,wght@6..96,600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Cardo:wght@700&family=Cinzel:wght@600&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:wght@600&family=Crimson+Pro:wght@600&family=DM+Serif+Display&family=Dancing+Script:wght@600&family=EB+Garamond:wght@600&family=Epilogue:wght@600&family=Fjalla+One&family=Fraunces:opsz,wght@9..144,600&family=Great+Vibes&family=Grenze+Gotisch:wght@600&family=Hanken+Grotesk:wght@600&family=Instrument+Serif&family=Italiana&family=Josefin+Sans:wght@600&family=Libre+Franklin:wght@600&family=Lora:wght@600&family=Manrope:wght@600;700&family=Marcellus&family=Metal+Mania&family=New+Rocker&family=Newsreader:opsz,wght@6..72,500&family=Oswald:wght@500;600&family=Outfit:wght@600&family=Pirata+One&family=Playfair+Display:wght@600&family=Plus+Jakarta+Sans:wght@600&family=Poppins:wght@600&family=Prata&family=Rozha+One&family=Sacramento&family=Sora:wght@600&family=Space+Grotesk:wght@600&family=Spectral:wght@600&family=Staatliches&family=Syne:wght@600;700&family=Tangerine:wght@700&family=Teko:wght@600&family=UnifrakturCook:wght@700&family=Unbounded:wght@500;700&family=Work+Sans:wght@600&family=Yeseva+One&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --canvas: #F7F8F5;
+      --canvas-2: #EEF1EB;
+      --line: #DEE3D8;
+      --ink: #15201B;
+      --soft: #4A5650;
+      --muted: #828D86;
+      --green: #2E7457;
+      --green-bg: #244B3C;
+      --ui: 'Manrope', system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: var(--ui);
+      background: var(--canvas);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    a { color: var(--green); }
+
+    /* ---- En-tête ---- */
+    header {
+      background: var(--green-bg);
+      color: var(--canvas);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    header .kicker {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #6BB89A;
+      margin-bottom: 16px;
+    }
+    header h1 {
+      font-family: 'Bricolage Grotesque', var(--ui);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    header p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: #C3D0C7;
+      font-size: 15px;
+    }
+    header .hint {
+      margin-top: 22px;
+      display: inline-block;
+      font-size: 13px;
+      color: var(--canvas);
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 9px 16px;
+      border-radius: 999px;
+    }
+
+    /* ---- Barre d'options ---- */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247,248,245,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px 20px;
+      font-size: 13px;
+    }
+    .toolbar label { color: var(--soft); display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+    .toolbar input[type="text"] {
+      font-family: var(--ui);
+      font-size: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 12px;
+      min-width: 210px;
+      color: var(--ink);
+      background: #fff;
+    }
+    .toolbar input[type="text"]:focus { outline: 2px solid var(--green); outline-offset: 1px; }
+    .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: #fff; }
+    .seg button {
+      font-family: var(--ui); font-size: 12.5px; font-weight: 600;
+      border: 0; background: transparent; color: var(--soft);
+      padding: 7px 14px; cursor: pointer;
+    }
+    .seg button.active { background: var(--ink); color: var(--canvas); }
+
+    /* ---- Grille ---- */
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 80px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      padding: 26px 24px 22px;
+      transition: box-shadow .2s, border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: var(--green); box-shadow: 0 18px 40px -28px rgba(21,32,27,0.4); }
+    .card.pick { border-color: var(--green); box-shadow: 0 0 0 2px var(--green) inset; }
+
+    .card .meta {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-bottom: 18px;
+    }
+    .card .num {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); font-variant-numeric: tabular-nums;
+    }
+    .card .name {
+      font-size: 12.5px; font-weight: 700; color: var(--ink);
+      background: var(--canvas-2); padding: 4px 10px; border-radius: 999px;
+    }
+    .card .pickbtn {
+      font-family: var(--ui); font-size: 12px; font-weight: 600;
+      border: 1px solid var(--line); background: #fff; color: var(--soft);
+      padding: 5px 11px; border-radius: 999px; cursor: pointer;
+    }
+    .card.pick .pickbtn { background: var(--green); color: #fff; border-color: var(--green); }
+
+    .wordmark { font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.02; color: var(--ink); word-break: break-word; }
+    .subtitle { font-size: 1.35rem; color: var(--ink); margin-top: 12px; }
+    .subtitle em { color: var(--green); font-style: inherit; }
+    .nav-sample {
+      margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+      font-size: 0.82rem; letter-spacing: 0.04em; color: var(--soft);
+      display: flex; flex-wrap: wrap; gap: 6px 18px;
+    }
+
+    /* Fond sombre optionnel pour juger le rendu du hero */
+    body.dark { background: #1b2b23; }
+    body.dark .toolbar { background: rgba(27,43,35,0.92); border-bottom-color: #33473c; }
+    body.dark .toolbar label { color: #C3D0C7; }
+    body.dark .card { background: var(--green-bg); border-color: #33473c; }
+    body.dark .card .name { background: rgba(255,255,255,0.08); color: #eaf1ec; }
+    body.dark .card .num { color: #8fa89a; }
+    body.dark .wordmark, body.dark .subtitle { color: #F7F8F5; }
+    body.dark .subtitle em { color: #6BB89A; }
+    body.dark .nav-sample { color: #C3D0C7; border-top-color: #33473c; }
+    body.dark .card .pickbtn { background: transparent; color: #C3D0C7; border-color: #33473c; }
+
+    footer.page { text-align: center; padding: 28px 20px 60px; color: var(--muted); font-size: 13px; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="kicker">House of Gibbs · Typographie</p>
+    <h1>Choisissez la police du site</h1>
+    <p>Voici une sélection de typographies pour « House of Gibbs ». Prenez le temps de faire défiler, notez le ou les numéros qui vous plaisent, et dites-moi lesquels. On peut aussi mélanger (une police pour les titres, une autre pour le texte).</p>
+    <span class="hint">Astuce : cliquez sur « Je préfère » pour marquer vos favoris, puis relevez leurs numéros.</span>
+  </header>
+
+  <div class="toolbar">
+    <label>Aperçu :
+      <input id="preview" type="text" value="House of Gibbs" placeholder="Tapez votre texte…" />
+    </label>
+    <span class="seg" role="group" aria-label="Fond">
+      <button id="light" class="active" type="button">Fond clair</button>
+      <button id="dark" type="button">Fond sombre</button>
+    </span>
+    <button id="onlyPicks" class="pickbtn" type="button" style="padding:7px 14px;">Voir mes favoris</button>
+  </div>
+
+  <main>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <footer class="page">Page de travail privée · House of Gibbs · réalisée par Elie Ageron</footer>
+
+  <script>
+    const FONTS = [
+      { name: 'Bricolage Grotesque', stack: "'Bricolage Grotesque', sans-serif", w: 700, note: 'Actuelle · grotesque moderne' },
+      { name: 'Fraunces', stack: "'Fraunces', serif", w: 600, note: 'Serif contemporain, du caractère' },
+      { name: 'Playfair Display', stack: "'Playfair Display', serif", w: 600, note: 'Serif élégant, haut de gamme' },
+      { name: 'Cormorant Garamond', stack: "'Cormorant Garamond', serif", w: 600, note: 'Serif fin et raffiné' },
+      { name: 'DM Serif Display', stack: "'DM Serif Display', serif", w: 400, note: 'Serif affirmé, éditorial' },
+      { name: 'Instrument Serif', stack: "'Instrument Serif', serif", w: 400, note: 'Serif sobre et chic' },
+      { name: 'Marcellus', stack: "'Marcellus', serif", w: 400, note: 'Serif classique, gravé' },
+      { name: 'Cinzel', stack: "'Cinzel', serif", w: 600, note: 'Capitales romaines, très tattoo' },
+      { name: 'Syne', stack: "'Syne', sans-serif", w: 700, note: 'Grotesque arty, singulier' },
+      { name: 'Space Grotesk', stack: "'Space Grotesk', sans-serif", w: 600, note: 'Grotesque technique' },
+      { name: 'Unbounded', stack: "'Unbounded', sans-serif", w: 700, note: 'Display rond, fort impact' },
+      { name: 'Bebas Neue', stack: "'Bebas Neue', sans-serif", w: 400, note: 'Condensé, capitales, brut' },
+      { name: 'Anton', stack: "'Anton', sans-serif", w: 400, note: 'Massif, très présent' },
+      { name: 'Oswald', stack: "'Oswald', sans-serif", w: 600, note: 'Condensé net, sportif' },
+      { name: 'Big Shoulders Display', stack: "'Big Shoulders Display', sans-serif", w: 700, note: 'Condensé industriel' },
+      { name: 'Archivo', stack: "'Archivo', sans-serif", w: 700, note: 'Grotesque solide, lisible' },
+      { name: 'Manrope', stack: "'Manrope', sans-serif", w: 700, note: 'Sans doux (texte actuel)' },
+      { name: 'Sora', stack: "'Sora', sans-serif", w: 600, note: 'Sans géométrique moderne' },
+      { name: 'Outfit', stack: "'Outfit', sans-serif", w: 600, note: 'Sans épuré, neutre' },
+      { name: 'Poppins', stack: "'Poppins', sans-serif", w: 600, note: 'Sans géométrique populaire' },
+      { name: 'Josefin Sans', stack: "'Josefin Sans', sans-serif", w: 600, note: 'Sans fin, art déco' },
+      { name: 'Libre Franklin', stack: "'Libre Franklin', sans-serif", w: 600, note: 'Sans classique américain' },
+
+      // --- Serifs élégants / éditoriaux ---
+      { name: 'EB Garamond', stack: "'EB Garamond', serif", w: 600, note: 'Serif humaniste intemporel' },
+      { name: 'Lora', stack: "'Lora', serif", w: 600, note: 'Serif équilibré, chaleureux' },
+      { name: 'Spectral', stack: "'Spectral', serif", w: 600, note: 'Serif écran raffiné' },
+      { name: 'Newsreader', stack: "'Newsreader', serif", w: 500, note: 'Serif éditorial, presse' },
+      { name: 'Crimson Pro', stack: "'Crimson Pro', serif", w: 600, note: 'Serif littéraire' },
+      { name: 'Cardo', stack: "'Cardo', serif", w: 700, note: 'Serif classique, livre' },
+      { name: 'Bodoni Moda', stack: "'Bodoni Moda', serif", w: 600, note: 'Serif haute couture, contrasté' },
+      { name: 'Italiana', stack: "'Italiana', serif", w: 400, note: 'Serif fin, mode / luxe' },
+      { name: 'Prata', stack: "'Prata', serif", w: 400, note: 'Serif chic, vertical' },
+      { name: 'Rozha One', stack: "'Rozha One', serif", w: 400, note: 'Serif contrasté, fort caractère' },
+
+      // --- Display / impact ---
+      { name: 'Abril Fatface', stack: "'Abril Fatface', serif", w: 400, note: 'Serif display gras, glamour' },
+      { name: 'Yeseva One', stack: "'Yeseva One', serif", w: 400, note: 'Serif display doux' },
+      { name: 'Alfa Slab One', stack: "'Alfa Slab One', serif", w: 400, note: 'Slab massif, affiche' },
+      { name: 'Fjalla One', stack: "'Fjalla One', sans-serif", w: 400, note: 'Sans condensé costaud' },
+      { name: 'Staatliches', stack: "'Staatliches', sans-serif", w: 400, note: 'Capitales condensées, affiche' },
+      { name: 'Teko', stack: "'Teko', sans-serif", w: 600, note: 'Condensé moderne, net' },
+
+      // --- Gothique / tattoo / script ---
+      { name: 'Cinzel Decorative', stack: "'Cinzel Decorative', serif", w: 700, note: 'Capitales ornées, très tattoo' },
+      { name: 'Grenze Gotisch', stack: "'Grenze Gotisch', serif", w: 600, note: 'Gothique modernisé, lisible' },
+      { name: 'Pirata One', stack: "'Pirata One', system-ui", w: 400, note: 'Blackletter, esprit tattoo' },
+      { name: 'UnifrakturCook', stack: "'UnifrakturCook', system-ui", w: 700, note: 'Gothique blackletter classique' },
+      { name: 'New Rocker', stack: "'New Rocker', system-ui", w: 400, note: 'Gothique rock, brut' },
+      { name: 'Metal Mania', stack: "'Metal Mania', system-ui", w: 400, note: 'Metal / tattoo, très marqué' },
+      { name: 'Great Vibes', stack: "'Great Vibes', cursive", w: 400, note: 'Script élégant, manuscrit' },
+      { name: 'Dancing Script', stack: "'Dancing Script', cursive", w: 600, note: 'Script décontracté' },
+      { name: 'Sacramento', stack: "'Sacramento', cursive", w: 400, note: 'Script fin, monoline' },
+      { name: 'Tangerine', stack: "'Tangerine', cursive", w: 700, note: 'Calligraphie fine et fluide' },
+
+      // --- Sans modernes ---
+      { name: 'Plus Jakarta Sans', stack: "'Plus Jakarta Sans', sans-serif", w: 600, note: 'Sans géométrique actuel' },
+      { name: 'Hanken Grotesk', stack: "'Hanken Grotesk', sans-serif", w: 600, note: 'Grotesque doux, lisible' },
+      { name: 'Epilogue', stack: "'Epilogue', sans-serif", w: 600, note: 'Sans net, contemporain' },
+      { name: 'Work Sans', stack: "'Work Sans', sans-serif", w: 600, note: 'Sans neutre, pro' },
+    ];
+
+    const grid = document.getElementById('grid');
+    const preview = document.getElementById('preview');
+    const picks = new Set(JSON.parse(localStorage.getItem('hog_picks') || '[]'));
+    let onlyPicks = false;
+
+    function render() {
+      grid.innerHTML = '';
+      FONTS.forEach((f, i) => {
+        const n = String(i + 1).padStart(2, '0');
+        const picked = picks.has(f.name);
+        if (onlyPicks && !picked) return;
+        const card = document.createElement('article');
+        card.className = 'card' + (picked ? ' pick' : '');
+        card.innerHTML = `
+          <div class="meta">
+            <span class="num">${n} · ${f.note}</span>
+            <span class="name">${f.name}</span>
+          </div>
+          <div class="wordmark" style="font-family:${f.stack};font-weight:${f.w};"></div>
+          <div class="subtitle" style="font-family:${f.stack};font-weight:${f.w};">Une famille <em>d'artistes</em>.</div>
+          <div class="nav-sample" style="font-family:${f.stack};">
+            <span>Les artistes</span><span>Les galeries</span><span>Contact</span>
+          </div>
+          <div style="margin-top:16px;text-align:right;">
+            <button class="pickbtn" type="button" data-name="${f.name}">${picked ? '★ Favori' : 'Je préfère'}</button>
+          </div>`;
+        card.querySelector('.wordmark').textContent = preview.value || 'House of Gibbs';
+        card.querySelector('.pickbtn').addEventListener('click', () => {
+          picks.has(f.name) ? picks.delete(f.name) : picks.add(f.name);
+          localStorage.setItem('hog_picks', JSON.stringify([...picks]));
+          render();
+        });
+        grid.appendChild(card);
+      });
+    }
+
+    preview.addEventListener('input', () => {
+      document.querySelectorAll('.wordmark').forEach(el => { el.textContent = preview.value || 'House of Gibbs'; });
+    });
+    document.getElementById('light').addEventListener('click', (e) => {
+      document.body.classList.remove('dark');
+      e.target.classList.add('active'); document.getElementById('dark').classList.remove('active');
+    });
+    document.getElementById('dark').addEventListener('click', (e) => {
+      document.body.classList.add('dark');
+      e.target.classList.add('active'); document.getElementById('light').classList.remove('active');
+    });
+    document.getElementById('onlyPicks').addEventListener('click', (e) => {
+      onlyPicks = !onlyPicks;
+      e.target.textContent = onlyPicks ? 'Voir toutes les polices' : 'Voir mes favoris';
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

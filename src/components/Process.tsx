@@ -179,7 +179,7 @@ function ProcessStep({ step, index }: { step: Step; index: number }) {
           <h3 className="font-display text-[2.1rem] md:text-[2.75rem] font-500 text-ink leading-[1.02] tracking-tight">
             {step.title}
           </h3>
-          <p className="font-display text-lg md:text-xl font-400 italic-display text-soft mt-2 text-balance">
+          <p className="font-display text-lg md:text-xl font-400 text-soft mt-2 text-balance">
             {step.tagline}
           </p>
           <ul className="mt-6 flex flex-col gap-3">
@@ -248,9 +248,7 @@ export default function Process() {
       <div className="max-w-container mx-auto">
         <SectionHeader
           className="mb-14 md:mb-20"
-          kicker="Le déroulé"
-          title={<>De l'idée à <span className="italic-display text-gradient-green-static">votre peau</span>.</>}
-          lead="Décidé ? Voici comment on avance : trois temps, une seule continuité, sans jamais rien précipiter."
+          title={<>De l'idée à <span className="text-gradient-green-static">votre peau</span>.</>}
         />
 
         <div className="relative max-w-[1040px] mx-auto">
@@ -293,7 +291,7 @@ export default function Process() {
                 transition={{ duration: 0.7, ease }}
                 className="self-start pt-1 md:pt-2"
               >
-                <p className="font-display text-xl md:text-[1.65rem] font-400 italic-display text-ink leading-[1.3] text-balance max-w-md">
+                <p className="font-display text-xl md:text-[1.65rem] font-400 text-ink leading-[1.3] text-balance max-w-md">
                   Votre projet reste le vôtre, du premier croquis à la dernière ligne.
                 </p>
                 <button

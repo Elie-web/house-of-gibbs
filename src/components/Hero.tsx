@@ -1,15 +1,12 @@
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
-import { ArrowRight, ChevronDown, Mountain, Star, Phone } from 'lucide-react'
-import { HOUSE, SOCIAL, REASSURANCE } from '../config'
+import { ArrowRight, ChevronDown, Phone } from 'lucide-react'
+import { HOUSE } from '../config'
 import { useBooking } from '../booking'
+import { logoFull } from '../assets'
 import Magnetic from './Magnetic'
-import { GoogleG } from './icons'
 
 const ease = [0.22, 1, 0.36, 1] as const
-
-// Repères de confiance affichés sous la note Google (hors note + hygiène)
-const TRUST = REASSURANCE.filter((r) => r.icon !== 'star' && r.icon !== 'shield')
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
@@ -35,7 +32,7 @@ export default function Hero() {
       >
         <img
           src={HOUSE.heroImage}
-          alt="Tatouage réaliste réalisé chez House of Gibbs"
+          alt="Araignée hyper-réaliste en relief, réalisée par Indy chez House of Gibbs"
           className="w-full h-full object-cover object-center"
           loading="eager"
           fetchPriority="high"
@@ -49,40 +46,40 @@ export default function Hero() {
       {/* Contenu centré */}
       <motion.div
         style={reduce ? undefined : { opacity: fade, y: contentY }}
-        className="relative z-10 flex flex-col items-center text-center px-5 sm:px-6 max-w-4xl mx-auto"
+        className="relative z-10 flex flex-col items-center text-center px-5 sm:px-6 max-w-5xl mx-auto"
       >
-        {/* Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease }}
-          className="inline-flex items-center gap-2.5 mb-7 pl-2.5 pr-4 py-1.5 rounded-full border border-white/25 bg-white/10 backdrop-blur-md"
-        >
-          <Mountain size={14} strokeWidth={2} className="text-green-3" />
-          <span className="font-mono text-[10.5px] uppercase tracking-widest text-white/90">
-            {HOUSE.city} · vue Belledonne
-          </span>
-        </motion.div>
+        {/* Le logo, en gros plan : la première chose qu'on voit.
+            Le monogramme et la typo « House of Gibbs » font partie du logo. */}
+        <motion.img
+          src={logoFull}
+          alt="House of Gibbs"
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.1, delay: 0.1, ease }}
+          className="w-[clamp(220px,42vw,440px)] h-auto invert drop-shadow-[0_10px_40px_rgba(0,0,0,0.55)]"
+          fetchPriority="high"
+          decoding="async"
+        />
 
-        {/* Titre = slogan */}
-        <motion.h1
-          initial={{ opacity: 0, y: 28 }}
+        {/* Localisation, discrète, sous le logo */}
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.35, ease }}
-          className="font-display font-400 text-white tracking-[-0.015em] leading-[1.04] text-[clamp(1.85rem,7vw,5rem)] text-shadow-hero"
+          transition={{ duration: 0.8, delay: 0.5, ease }}
+          className="mt-7 font-mono text-[11px] sm:text-xs uppercase tracking-[0.28em] text-white/80 text-shadow-sub"
         >
-          <span className="block whitespace-nowrap">Exceptional tattoos,</span>
-          <span className="block whitespace-nowrap italic-display text-green-3">timeless memories.</span>
-        </motion.h1>
+          {HOUSE.city} · {HOUSE.department} · sur rendez-vous
+        </motion.p>
 
-        {/* Description */}
+        {/* Intro d'accueil (texte fourni par Mark, version courte) */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease }}
-          className="mt-5 sm:mt-7 max-w-xl font-sans text-[15px] sm:text-[17px] leading-relaxed font-400 text-white/85 text-shadow-sub text-pretty"
+          transition={{ duration: 0.8, delay: 0.62, ease }}
+          className="mt-6 sm:mt-7 max-w-xl font-sans text-[15px] sm:text-[17px] leading-relaxed font-400 text-white/85 text-shadow-sub text-pretty"
         >
-          Vous avez une idée en tête. On en fait une pièce que vous porterez toute votre vie. Réalisme, fine line ou graphique : ensemble, on trouve l'artiste fait pour votre projet. Studio privé à {HOUSE.city}, sur rendez-vous.
+          Un collectif familial de tatoueurs basé en Savoie. Trois artistes aux
+          univers complémentaires : Mark, Zaz et Indy.
         </motion.p>
 
         {/* CTAs */}
@@ -102,62 +99,33 @@ export default function Hero() {
             </button>
           </Magnetic>
           <a
-            href="#galerie"
+            href="#galeries"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-600 text-white rounded-full border border-white/35 bg-white/5 backdrop-blur-md hover:bg-white/15 transition-colors duration-300"
           >
-            Voir la galerie
+            Voir les galeries
           </a>
         </motion.div>
 
-        {/* Preuve sociale - un seul bloc typographique soigné, pas une pile de pilules */}
-        <motion.div
+        {/* Ligne de repères sobre, sans avis : le métier parle de lui-même */}
+        <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.0, ease }}
-          className="mt-9 flex flex-col items-center gap-3"
+          className="mt-9 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 font-mono text-[11px] uppercase tracking-wider text-white/65"
         >
-          {/* Note Google - lockup mis en valeur */}
+          <span>~30 ans de métier</span>
+          <span className="text-green-3" aria-hidden="true">·</span>
+          <span>Studio privé, sur RDV</span>
+          <span className="text-green-3" aria-hidden="true">·</span>
           <a
-            href={SOCIAL.reviewsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 text-white"
-            aria-label={`${SOCIAL.rating} sur 5 sur Google, ${SOCIAL.reviewCount} avis`}
+            href={`tel:${HOUSE.phoneRaw}`}
+            className="inline-flex items-center gap-1.5 text-white/80 hover:text-white transition-colors duration-200"
+            aria-label={`Appeler le ${HOUSE.phone}`}
           >
-            <span className="flex gap-0.5" aria-hidden="true">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <Star key={i} size={17} className="fill-amber-400 text-amber-400" />
-              ))}
-            </span>
-            <span className="font-display text-xl font-600 leading-none tracking-tight">{SOCIAL.rating}</span>
-            <span className="h-4 w-px bg-white/25" aria-hidden="true" />
-            <span className="inline-flex items-center gap-1.5 text-[13px] text-white/75">
-              <GoogleG size={14} />
-              <span className="border-b border-transparent group-hover:border-white/40 transition-colors">
-                {SOCIAL.reviewCount} avis Google
-              </span>
-            </span>
+            <Phone size={11} strokeWidth={2} aria-hidden="true" />
+            {HOUSE.phone}
           </a>
-
-          {/* Repères + téléphone - fine ligne pointée, aucune pilule */}
-          <p className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 font-mono text-[11px] uppercase tracking-wider text-white/60">
-            {TRUST.map((r, i) => (
-              <span key={r.title} className="inline-flex items-center">
-                {i > 0 && <span className="mr-2.5 text-green-3" aria-hidden="true">·</span>}
-                {r.title}
-              </span>
-            ))}
-            <span className="text-green-3" aria-hidden="true">·</span>
-            <a
-              href={`tel:${HOUSE.phoneRaw}`}
-              className="inline-flex items-center gap-1.5 text-white/75 hover:text-white transition-colors duration-200"
-              aria-label={`Appeler le ${HOUSE.phone}`}
-            >
-              <Phone size={11} strokeWidth={2} aria-hidden="true" />
-              {HOUSE.phone}
-            </a>
-          </p>
-        </motion.div>
+        </motion.p>
       </motion.div>
 
       {/* Flèche de scroll */}

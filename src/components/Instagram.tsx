@@ -5,9 +5,13 @@ import { ARTISTS } from '../config'
 import { InstagramIcon } from './icons'
 import SectionHeader from './SectionHeader'
 
-// Un échantillon par artiste pour la bande défilante
+// Un échantillon par artiste pour la bande défilante (on ignore les
+// emplacements encore vides, ex. galerie de Zaz en attente)
 const FEED = ARTISTS.flatMap((a) =>
-  a.gallery.slice(0, 3).map((g) => ({ src: g.src, alt: g.alt, href: a.instagram, accent: a.accent, name: a.name })),
+  a.gallery
+    .filter((g) => g.src)
+    .slice(0, 3)
+    .map((g) => ({ src: g.src, alt: g.alt, href: a.instagram, accent: a.accent, name: a.name })),
 )
 
 export default function Instagram() {
@@ -21,9 +25,7 @@ export default function Instagram() {
 
         <SectionHeader
           className="mb-8"
-          kicker="Instagram"
-          title={<>Entre deux séances, <span className="italic-display text-gradient-green-static">ça continue ici</span>.</>}
-          lead="La maison ne s'arrête pas à la porte du studio. Suivez chaque artiste au quotidien."
+          title={<>Entre deux séances, <span className="text-gradient-green-static">ça continue ici</span>.</>}
         />
         <motion.div
           initial={{ opacity: 0, y: 16 }}

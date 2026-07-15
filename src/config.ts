@@ -1,13 +1,13 @@
 ﻿// ================================================================
 // CONFIGURATION HOUSE OF GIBBS - Personnalisez uniquement ce fichier
 // ----------------------------------------------------------------
-// Collectif familial de tatoueurs : Mark (le père), Zazz (la mère),
-// Indy (le fils). Studio privé en hauteur à Saint-Baldoph, vue Belledonne.
+// Collectif familial de tatoueurs : Mark, Zaz et Indy.
+// Studio privé en hauteur à Saint-Baldoph, sur rendez-vous.
 // ================================================================
 
 import {
-  heroLandscape,
   markSelfie,
+  heroSpider,
   markMountainSleeve,
   markChestSamurai,
   markForearmPortrait,
@@ -24,12 +24,12 @@ import {
 export const HOUSE = {
   name:       'House of Gibbs',
   shortName:  'Gibbs',
-  tagline:    'Exceptional tattoos, timeless memories',
+  tagline:    '',
   intro:      'Un collectif familial de tatoueurs basé en Savoie. Trois mains, un seul studio.',
 
   city:       'Saint-Baldoph',
   department: 'Savoie',
-  view:       'Studio privé en hauteur · vue sur la chaîne de Belledonne',
+  view:       'Studio privé en hauteur, sur rendez-vous',
 
   phone:      '06 26 58 51 57',
   phoneRaw:   '0626585157',
@@ -38,8 +38,9 @@ export const HOUSE = {
   address:    '190 Chemin de Moulevin',
   cityZip:    '73190 Saint-Baldoph',
 
-  // Photo de fond du hero (plein écran, paysage). Remplaçable par une vraie photo du studio.
-  heroImage:  heroLandscape,
+  // Photo de fond du hero (plein écran). Araignée hyper-réaliste en relief (Indy,
+  // IMG_1313) : pièce forte et graphique qui accroche l'œil dès l'ouverture.
+  heroImage:  heroSpider,
   mapsUrl:    'https://maps.google.com/?q=190+Chemin+de+Moulevin+73190+Saint-Baldoph',
   mapEmbed:   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2785.4!2d5.9882!3d45.5497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478b8f3a3b9e8f0b%3A0x1234!2s190+Chemin+de+Moulevin%2C+73190+Saint-Baldoph!5e0!3m2!1sfr!2sfr!4v1700000000000',
 
@@ -93,7 +94,8 @@ export const ARTISTS: Artist[] = [
     role:      'Le père',
     specialty: 'Réalisme · noir & gris · couleur',
     accent:    '#2B312E', // graphite
-    bio:       "Trente ans que Mark ne parle qu'une seule langue : celle du réalisme. Il connaît la profondeur d'un dégradé, le poids d'une ombre, l'endroit exact où un trait doit se poser pour ne plus jamais bouger. Sous son aiguille, une photo devient peau et un souvenir prend du relief. Il ne cherche pas l'effet du moment. Il dessine des pièces qui auront encore de l'allure dans vingt ans, et qui vieilliront avec vous plutôt que contre vous.",
+    // TODO descriptif : à remplacer par le texte définitif de Mark
+    bio:       "Trente ans que Mark ne parle qu'une seule langue : celle du réalisme. Sous son aiguille, une photo devient peau et un souvenir prend du relief.",
     portrait:  markSelfie,
     instagram: 'https://www.instagram.com/markblackscab/?hl=fr',
     facebook:  'https://www.facebook.com/p/Blackscab-Tattoos-Chambéry-73-100063680827033/?locale=fr_FR',
@@ -108,12 +110,13 @@ export const ARTISTS: Artist[] = [
   },
   {
     id:        'isabelle',
-    name:      'Zazz',
-    handle:    'Zazz',
+    name:      'Zaz',
+    handle:    'Zaz',
     role:      'La mère',
     specialty: 'Fine line · floral · couleur douce',
     accent:    '#16745A', // émeraude (couleur maison)
-    bio:       "Zazz dessine comme elle écoute : lentement, jusqu'à ce que votre idée trouve sa forme la plus juste. Ses lignes sont fines, ses fleurs presque vivantes, ses couleurs posées avec la douceur d'un souffle. On vient la voir pour une pièce délicate, on repart avec un peu de soi, mis en trait.",
+    // TODO descriptif : à remplacer par le texte définitif de Mark
+    bio:       "Zaz dessine comme elle écoute : lentement, jusqu'à ce que votre idée trouve sa forme la plus juste. Ses lignes sont fines, ses fleurs presque vivantes.",
     portrait:  '', // placeholder - photos à venir
     instagram: 'https://www.instagram.com/',
     gallery: [
@@ -130,7 +133,8 @@ export const ARTISTS: Artist[] = [
     role:      'Le fils',
     specialty: 'Réalisme · blackwork · graphique',
     accent:    '#11998E', // vert-teal frais
-    bio:       "Indy, c'est l'œil graphique de la maison : un noir profond et franc, un réalisme net, des compositions qui tiennent debout toutes seules. Il ne recopie jamais rien. Chaque motif naît pour une peau et une seule, et n'existera nulle part ailleurs : le vôtre n'appartiendra qu'à vous.",
+    // TODO descriptif : à remplacer par le texte définitif de Mark
+    bio:       "Indy, c'est l'œil graphique de la maison : un noir profond et franc, un réalisme net. Chaque motif naît pour une peau et une seule.",
     portrait:  indyPortrait,
     instagram: 'https://www.instagram.com/in_dtatts/',
     gallery: [
@@ -194,7 +198,7 @@ export const REASSURANCE = [
 export const FAQ = [
   {
     q: 'Comment se passe la première prise de contact ?',
-    a: "Par le formulaire de rendez-vous ou par téléphone. On revient toujours vers vous en personne pour échanger sur votre idée et fixer une consultation.",
+    a: "Par message (Instagram, e-mail) ou par téléphone, comme vous préférez. On revient toujours vers vous en personne pour échanger sur votre idée et fixer une consultation. Et si vous hésitez encore, vous pouvez juste poser une question, sans engagement.",
   },
   {
     q: 'Combien coûte un tatouage ?',
@@ -209,8 +213,8 @@ export const FAQ = [
     a: "Non, on tatoue uniquement les personnes majeures. On vous demandera une pièce d'identité le jour de la séance.",
   },
   {
-    q: 'Comment choisir entre Mark, Zazz et Indy ?',
-    a: "Selon le style qui vous parle : réalisme et couleur pour Mark, fine line et couleur douce pour Zazz, blackwork et graphique pour Indy. Dans le doute, décrivez votre projet : on vous oriente vers la bonne main.",
+    q: 'Comment choisir entre Mark, Zaz et Indy ?',
+    a: "Selon le style qui vous parle : réalisme et couleur pour Mark, fine line et couleur douce pour Zaz, blackwork et graphique pour Indy. Dans le doute, décrivez votre projet : on vous oriente vers la bonne main.",
   },
   {
     q: 'Comment entretenir un tatouage frais ?',

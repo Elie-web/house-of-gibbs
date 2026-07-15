@@ -17,12 +17,10 @@ export default function Faq() {
     <section id="faq" ref={ref} className="py-16 sm:py-24 md:py-32 px-5 md:px-10">
       <div className="max-w-3xl mx-auto">
 
-        {/* En-tête centré */}
+        {/* En-tête centré — juste le titre */}
         <SectionHeader
           className="mb-8 md:mb-10"
-          kicker="Les questions"
-          title={<>Reste une question ? <span className="italic-display text-gradient-green-static">Sûrement celle-ci.</span></>}
-          lead="Les réponses aux questions qu'on nous pose le plus, juste avant de se lancer."
+          title={<>Posez-nous <span className="text-gradient-green-static">vos questions</span>.</>}
         />
         <motion.div
           initial={{ opacity: 0, y: 16 }}

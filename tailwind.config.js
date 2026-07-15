@@ -11,22 +11,28 @@ export default {
         canvas:     '#F7F8F5',   // fond principal
         'canvas-2': '#EEF1EB',   // panneaux / survol
         line:       '#DEE3D8',   // filets / bordures
-        // --- Encre (texte + bloc sombre de clôture, vert-noir) ---
-        ink:        '#15201B',   // texte principal, bloc sombre
+        // --- Encre (texte principal ; les blocs sombres passent en vert) ---
+        ink:        '#15201B',   // texte principal
         'ink-2':    '#1C2A24',   // surface sombre élevée
         'ink-line': '#2C3B33',   // filets sur fond sombre
         soft:       '#4A5650',   // texte secondaire (sur clair)
         muted:      '#828D86',   // texte tertiaire
-        'ink-soft': '#B9C4BC',   // texte secondaire sur fond sombre
-        // --- Vert maison : émeraude profond, froid, sans jaune -----
-        green:      '#16745A',
-        'green-2':  '#0E5340',   // états foncés
-        'green-3':  '#4FA288',   // états clairs / sur fond sombre
-        'green-4':  '#11998E',   // teal frais (Indi)
-        'green-tint':'#DCEAE3',  // fonds de badges / surfaces vertes claires
+        'ink-soft': '#C3D0C7',   // texte secondaire sur fond vert sombre
+        // --- Vert maison : éclairci + un cran plus militaire (à valider
+        //     avec la sélection Castorama de Mark ; éviter le vert pomme) --
+        green:      '#2E7457',   // accent principal (était #16745A, éclairci)
+        'green-2':  '#1F5741',   // états foncés
+        'green-3':  '#6BB89A',   // états clairs / texte sur fond vert
+        'green-4':  '#3C8C79',   // teal frais (Indy)
+        'green-tint':'#E1ECE5',  // fonds de badges / surfaces vertes claires
+        // Fond des sections « chaudes » : vert militaire (olive/mat, chaud),
+        // remplace le presque-noir. Texte blanc lisible dessus.
+        'green-bg':  '#3D4C34',
+        'green-bg-2':'#49583F',  // surfaces élevées sur fond vert militaire
+        'green-bg-line':'#525F47', // filets sur fond vert militaire
       },
       boxShadow: {
-        'green-glow': '0 30px 80px -38px rgba(22, 116, 90, 0.40)',
+        'green-glow': '0 30px 80px -38px rgba(46, 116, 87, 0.40)',
         'soft-lift':  '0 24px 60px -34px rgba(21, 32, 27, 0.28)',
         'card':       '0 1px 2px rgba(21,32,27,0.04), 0 12px 32px -22px rgba(21,32,27,0.20)',
         // Élévation « luxe » : liseré clair en haut + ombre verte profonde et douce
@@ -34,7 +40,7 @@ export default {
         'luxe-hover': 'inset 0 1px 0 rgba(255,255,255,0.8), 0 4px 8px -3px rgba(14,83,64,0.14), 0 40px 80px -38px rgba(14,83,64,0.42)',
       },
       fontFamily: {
-        display: ['"Fraunces"', 'Georgia', 'serif'],
+        display: ['"Bricolage Grotesque"', 'Georgia', 'sans-serif'],
         sans:    ['"Manrope"', 'system-ui', 'sans-serif'],
         mono:    ['"Space Mono"', 'ui-monospace', 'monospace'],
       },

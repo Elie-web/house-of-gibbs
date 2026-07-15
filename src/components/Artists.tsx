@@ -18,11 +18,9 @@ export default function Artists() {
     <section id="artistes" ref={ref} className="py-16 sm:py-24 md:py-32 px-5 md:px-10">
       <div className="max-w-container mx-auto">
 
-        {/* En-tête */}
+        {/* En-tête — juste le titre, rien d'autre */}
         <SectionHeader
-          kicker="Les artistes"
-          title={<>Père, mère, fils. <span className="italic-display text-gradient-green-static">Trois mains, un seul studio.</span></>}
-          lead="Mark, Zazz et Indy. Une même passion du tatouage, trois univers complémentaires, et à chacun sa façon bien à lui de marquer la peau."
+          title={<>Une famille <span className="text-gradient-green-static">d'artistes</span>.</>}
         />
 
         {/* Cartes artistes */}
@@ -51,12 +49,6 @@ export default function Artists() {
                     <span className="font-mono text-[10px] uppercase tracking-widest">Photo à venir</span>
                   </div>
                 )}
-                <span
-                  className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest text-white"
-                  style={{ background: 'var(--accent)' }}
-                >
-                  {a.role}
-                </span>
               </figure>
 
               {/* Texte */}
@@ -70,11 +62,10 @@ export default function Artists() {
                     @{a.handle}
                   </span>
                 </div>
-                <p className="font-sans text-sm font-600 text-green-2 mb-5">{a.specialty}</p>
+                <p className="font-sans text-sm font-600 text-green-2 mb-7">{a.specialty}</p>
 
-                <p className="font-sans text-base md:text-[17px] text-ink/75 leading-relaxed mb-7 max-w-xl mx-auto md:mx-0 text-pretty">
-                  {a.bio}
-                </p>
+                {/* Descriptif retiré pour l'instant : Mark et Zaz rédigent leurs textes,
+                    on les intègre dès réception (voir bio dans config.ts). */}
 
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
                   <Magnetic strength={0.3}>
@@ -88,11 +79,11 @@ export default function Artists() {
                     </button>
                   </Magnetic>
                   <a
-                    href={`#galerie`}
+                    href={`#gal-${a.id}`}
                     className="inline-flex items-center gap-2 px-5 py-3 text-sm font-600 text-ink rounded-full border border-line hover:bg-canvas-2 transition-colors"
                   >
                     <Images size={15} strokeWidth={2} />
-                    Galerie
+                    Sa galerie
                   </a>
                   <a
                     href={a.instagram}

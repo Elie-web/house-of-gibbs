@@ -5,12 +5,8 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Artists from './components/Artists'
-import Styles from './components/Styles'
 import Gallery from './components/Gallery'
-import Spotlight from './components/Spotlight'
 import Process from './components/Process'
-import Aftercare from './components/Aftercare'
-import Testimonials from './components/Testimonials'
 import Faq from './components/Faq'
 import Instagram from './components/Instagram'
 import Contact from './components/Contact'
@@ -29,40 +25,28 @@ export default function App() {
         <Navbar />
 
         <main id="contenu">
-          {/* 1. Accroche - CTA immédiat + preuve sociale intégrée (note Google + repères de confiance) */}
+          {/* 1. Accroche — le nom de la maison + CTA immédiat */}
           <Hero />
 
-          {/* 2. Qui va me tatouer - lien personnel, le collectif familial */}
+          {/* 2. Les artistes — la famille, chacun lié à sa galerie */}
           <Artists />
 
-          {/* 4. Par style - le client trouve son langage en 10 s */}
-          <Styles />
-
-          {/* 5. Leur travail - valide la qualité */}
+          {/* 3. Les galeries — une par artiste, à la suite (fond vert) */}
           <Gallery />
 
-          {/* 6. Pièce en lumière - spotlight sombre façon galerie d'art */}
-          <Spotlight />
-
-          {/* 7. La preuve sociale - remontée : « ils sont bien notés » juste après le travail */}
-          <Testimonials />
-
-          {/* 8. Comment ça se passe - réduit l'anxiété */}
+          {/* 4. Comment ça se passe — réduit l'anxiété */}
           <Process />
 
-          {/* 9. Le soin - aftercare, prouve l'expertise */}
-          <Aftercare />
-
-          {/* 10. Le studio - l'expérience & le lieu */}
+          {/* 5. Le studio — l'expérience & le lieu (fond vert) */}
           <About />
 
-          {/* 11. Rester en lien */}
+          {/* 6. Rester en lien */}
           <Instagram />
 
-          {/* 12. Lever les derniers doutes - juste avant de réserver */}
+          {/* 7. Lever les derniers doutes */}
           <Faq />
 
-          {/* 13. Le climax : venir & réserver */}
+          {/* 8. Prendre contact — sans formulaire */}
           <Contact />
         </main>
 
